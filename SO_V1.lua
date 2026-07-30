@@ -50238,7 +50238,7 @@ local function getAccessInfo(device)
 	    return table.concat(result, "\n")
 end
 
-local url = "https://raw.githubusercontent.com/oiim10/IIM/refs/heads/main/LF_USERS"
+local url = "https://raw.githubusercontent.com/oiim10/IIM/refs/heads/main/LK_USERS"
 
 local function getData()
     local res = gg.makeRequest(url)
