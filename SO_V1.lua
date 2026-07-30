@@ -50359,7 +50359,7 @@ end
 function LogAccess(name, code, device, expired)
 
     local url =
-    "https://script.google.com/macros/s/AKfycbw4cKFBoyDGtBxq8oSlf0ZKFMl2vJrsj-C3qSxGxFXb_2xjeNvvFPhWTN52wJy4SKp1CA/exec" ..
+    "https://script.google.com/macros/s/AKfycbxdpCMgTCQAqyjwSlNwPRN3BUllLyPPYYEIouxPQvBNtL3_Jr1Iqj_Q4-hG-OsPjNLp/exec" ..
     "?name=" .. tostring(name) ..
     "&user=" .. tostring(code) ..
     "&device=" .. tostring(device) ..
