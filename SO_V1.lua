@@ -48239,53 +48239,38 @@ function Powerball_Event()
         return
     end
 
+    local original = {}
     local edit = {}
 
     for _, v in ipairs(res) do
+        local addr = v.address - 20
+
+        -- Simpan nilai asli
+        local old = gg.getValues({
+            {address = addr, flags = gg.TYPE_DWORD}
+        })
+
+        table.insert(original, old[1])
+
+        -- Ubah menjadi 300
         table.insert(edit, {
-            address = v.address - 20,
+            address = addr,
             flags = gg.TYPE_DWORD,
             value = 300
         })
     end
 
+    -- Edit ke 300
     gg.setValues(edit)
+
+    gg.alert("✅ Powerball Unlocked\nCek Puzzle Sekarang")
+
+    Fixed_Bug_Puzzle()
+
+    -- Kembalikan ke nilai awal
+    gg.setValues(original)
+
     gg.clearResults()
-
-    gg.alert(
-        "✅ Powerball Unlocked\n" ..
-		"Cek Puzzle Sekarang"
-    )
-Fixed_Bug_Puzzle()
-end
-function Fixed_Bug_Puzzle()
-    gg.clearResults()
-    gg.searchNumber("103079301504", gg.TYPE_QWORD)
-
-    local res = gg.getResults(10)
-    if #res == 0 then
-        gg.alert("❌ Data tidak ditemukan")
-        gg.clearResults()
-        return
-    end
-
-    local edit = {}
-
-    for _, v in ipairs(res) do
-        table.insert(edit, {
-            address = v.address - 20,
-            flags = gg.TYPE_DWORD,
-            value = 250
-        })
-    end
-
-    gg.setValues(edit)
-    gg.clearResults()
-
-    gg.alert(
-        "✅ Fixed Bug"
-    )
-
 end
 
 function Weekly_Competition()
