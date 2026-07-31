@@ -6601,7 +6601,7 @@ function Vatican_Goldpass()
     gg.TYPE_DWORD
   )
 
- gg.refineNumber("696B5328h", gg.TYPE_DWORD)
+ gg.refineNumber("696B532Ch", gg.TYPE_DWORD)
 
  local results = gg.getResults(10)
 
