@@ -49126,7 +49126,7 @@ local menu = {
         func = Surf_Goldpass
     },
 	    {
-        label = pretty("VATICAN PASS"),
+        label = pretty("SUMMER PASS"),
         func = Vatican_Goldpass
     }
 }
