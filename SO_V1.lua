@@ -48179,53 +48179,48 @@ end
 
 end
 
+
 function Unlock_Mayor_Instan()
-    local p = gg.prompt(
-        {"🎁 INPUT LEVEL (75 - 265)"},
-        {75},
-        {"number"}
-    )
-
-    if not p or p[1] == "" then
-        gg.alert("❌ Input angka")
-        return
-    end
-
-    local input = tonumber(p[1])
-
-    if not input or input < 75 or input > 265 then
-        gg.alert("❌ Masukkan nilai antara 75 sampai 265")
-        return
-    end
-
-    gg.clearResults()
+   gg.clearResults()
     gg.searchNumber("103079301504", gg.TYPE_QWORD)
 
-    local res = gg.getResults(9999)
+    local res = gg.getResults(10)
     if #res == 0 then
         gg.alert("❌ Data tidak ditemukan")
         gg.clearResults()
         return
     end
 
+    local original = {}
     local edit = {}
 
     for _, v in ipairs(res) do
+        local addr = v.address - 20
+
+        -- Simpan nilai asli
+        local old = gg.getValues({
+            {address = addr, flags = gg.TYPE_DWORD}
+        })
+
+        table.insert(original, old[1])
+
+        -- Ubah menjadi 300
         table.insert(edit, {
-            address = v.address - 20,
+            address = addr,
             flags = gg.TYPE_DWORD,
-            value = input
+            value = 75
         })
     end
 
+    -- Edit ke 300
     gg.setValues(edit)
-    gg.clearResults()
 
-    gg.alert(
-        "✅ EVENT UNLOCKED\n\n" ..
-        "🎁 Level Event : " .. input .. "\n" ..
-        "🔍 Result : " .. #edit
-    )
+    gg.alert("✅ Mayor Instan Unlocked\nCek Event Sekarang")
+
+    -- Kembalikan ke nilai awal
+    gg.setValues(original)
+
+    gg.clearResults()
 end
 
 function Powerball_Event()
@@ -48264,8 +48259,6 @@ function Powerball_Event()
     gg.setValues(edit)
 
     gg.alert("✅ Powerball Unlocked\nCek Puzzle Sekarang")
-
-    Fixed_Bug_Puzzle()
 
     -- Kembalikan ke nilai awal
     gg.setValues(original)
