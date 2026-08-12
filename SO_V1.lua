@@ -48218,6 +48218,24 @@ end
 
 function Flip_Card_Stars()
     gg.clearResults()
+
+    local input = gg.prompt(
+        {"Masukkan Jumlah Bintang:"},
+        {"100000"},
+        {"number"}
+    )
+
+    if not input then
+        return
+    end
+
+    local targetValue = tonumber(input[1])
+
+    if not targetValue then
+        gg.alert("❌ Value tidak valid")
+        return
+    end
+
     gg.alert(
         "⭐ Petunjuk\n\n" ..
         "Setelah jumlah bintang berubah, mainkan 1 kali balik ubin.\n\n" ..
@@ -48235,23 +48253,6 @@ function Flip_Card_Stars()
 
     if #anchorResult == 0 then
         gg.alert("❌ Data Flip Card tidak ditemukan")
-        return
-    end
-
-    local input = gg.prompt(
-        {"Masukkan Jumlah Bintang:"},
-        {"100000"},
-        {"number"}
-    )
-
-    if not input then
-        return
-    end
-
-    local targetValue = tonumber(input[1])
-
-    if not targetValue then
-        gg.alert("❌ Value tidak valid")
         return
     end
 
