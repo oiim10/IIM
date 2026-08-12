@@ -48273,7 +48273,7 @@ local edit = {
 
 
     gg.setValues(edit)
-
+   gg.addListItems(edit)
     gg.alert(
         "✅ Flip Card Stars : " .. targetValue
     )
