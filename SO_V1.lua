@@ -6220,10 +6220,9 @@ if CARD == 4 then Menu_Option(100006) end
 
 elseif menu_tipo == 100005 then
     local MG = gg.choice({
-      "🎮 • UNLOCK MAYOR'S EVENTS",
-	  "🎮 • UNLOCK MAYOR'S EVENTS (INSTAN)",		
-      "🎮 • WEEKLY CONTEST | MAYOR'S CUP",
+	  "🎮 • UNLOCK EVENT MINIGAMASE",		
       "🎮 • UNLOCK POWERBALL",
+	  "🎮 • FLIP CARD STARS",
       "🔚 • BACK"
     }, nil, 
 [==[
@@ -6232,11 +6231,10 @@ elseif menu_tipo == 100005 then
 ╚══════════════════════╝
 ]==])
     
-if MG == 1 then Unlock_Mayors_Event() end
-if MG == 2 then Unlock_Mayor_Instan() end		
-if MG == 3 then Weekly_Competition() end
-if MG == 4 then Powerball_Event() end
-if MG == 5 then Menu_Option(100006) end
+if MG == 1 then Unlock_Mayor_Instan() end		
+if MG == 2 then Powerball_Event() end
+if MG == 3 then Flip_Card_Stars() end
+if MG == 4 then Menu_Option(100006) end
 
   elseif menu_tipo == 100006 then
 	if not USER_LOADED then
@@ -48072,340 +48070,214 @@ gg.setValues(t)
     gg.toast("✅ SEMUA KANDANG GRATIS SEKARANG")
 end
 
-function Unlock_Mayors_Event()
-
-    -- Input awal
-    local p = gg.prompt(
-        {
-            "🎮Masukkan level puzzle sekarang :",
-            "🎮Edit level puzzle menjadi (75 - 275):"
-        },
-        {
-            1,
-            75
-        },
-        {
-            "number",
-            "number"
-        }
-    )
-
-    if not p then
-        gg.toast("Dibatalkan")
-        return
-    end
-
-    local level = tonumber(p[1])
-    local editValue = tonumber(p[2])
-
-    -- Validasi value edit
-    if editValue < 75 or editValue > 275 then
-        gg.alert("Edit level puzzle hanya boleh antara 75 - 275")
-        return
-    end
-
-    -- Search awal
-    local current = level - 1
-
-    gg.clearResults()
-    gg.searchNumber(current .. ";86400", gg.TYPE_DWORD)
-
-    gg.toast("Search : " .. current .. ";86400")
-
-    -- Loop refine manual
-    while true do
-
-    if gg.getResultsCount() <= 2 then
-        break
-    end
-
-    local refineInput = gg.prompt(
-        {
-            "Masukkan level puzzle saat ini :"
-        },
-        {
-            level + 1
-        },
-        {
-            "number"
-        }
-    )
-
-    -- Cancel = lanjut main puzzle dulu
-    if not refineInput then
-
-        gg.toast("Main puzzle dulu")
-
-        gg.setVisible(false)
-
-        while not gg.isVisible() do
-            gg.sleep(100)
-        end
-
-        gg.setVisible(false)
-
-    else
-
-        level = tonumber(refineInput[1])
-
-        current = level - 1
-
-        gg.refineNumber(current .. ";86400", gg.TYPE_DWORD)
-
-        gg.toast("Refine : " .. current .. ";86400")
-
-    end
-
-end
-
-    local results = gg.getResults(2)
-
-    if #results < 2 then
-        gg.alert("Value tidak ditemukan")
-        return
-    end
-
-    -- Urutkan value kecil
-    table.sort(results, function(a, b)
-        return a.value < b.value
-    end)
-
-    -- Edit value kecil
-    results[1].value = editValue
-
-    gg.setValues({results[1]})
-
-    gg.toast("🔓THE MINIGAME EVENT IS ALREADY OPENED")
-
-end
-
-
 function Unlock_Mayor_Instan()
-   gg.clearResults()
+    gg.clearResults()
+
+    local input = gg.prompt(
+        {"Masukkan level:"},
+        {"0"},
+        {"number"}
+    )
+
+    if not input then
+        return
+    end
+
+    local level = tonumber(input[1])
+
+    if not level or level < 1 then
+        gg.alert("❌ Level tidak valid")
+        return
+    end
+
+    -- Input 1099 -> target 1098
+    local targetValue = level - 1
+
+    -- Search signature
     gg.searchNumber("103079301504", gg.TYPE_QWORD)
 
     local res = gg.getResults(10)
+
     if #res == 0 then
         gg.alert("❌ Data tidak ditemukan")
         gg.clearResults()
         return
     end
 
-    local original = {}
-    local edit = {}
+    local tempEdit = {}
+    local finalEdit = {}
 
     for _, v in ipairs(res) do
         local addr = v.address - 20
 
-        -- Simpan nilai asli
-        local old = gg.getValues({
-            {address = addr, flags = gg.TYPE_DWORD}
-        })
-
-        table.insert(original, old[1])
-
-        -- Ubah menjadi 300
-        table.insert(edit, {
+        -- Tahap 1: ubah menjadi 300
+        table.insert(tempEdit, {
             address = addr,
             flags = gg.TYPE_DWORD,
             value = 75
         })
+
+        -- Tahap 2: ubah 300 menjadi target
+        table.insert(finalEdit, {
+            address = addr,
+            flags = gg.TYPE_DWORD,
+            value = targetValue
+        })
     end
 
-    -- Edit ke 300
-    gg.setValues(edit)
+    -- 1. Ubah ke 300
+    gg.setValues(tempEdit)
 
-    gg.alert("✅ Mayor Instan Unlocked\nCek Event Sekarang")
+    -- 2. Tunggu 500 milidetik
+    gg.sleep(1000)
 
-    -- Kembalikan ke nilai awal
-    gg.setValues(original)
+    -- 3. Ubah 300 menjadi target value
+    gg.setValues(finalEdit)
+
+    gg.alert(
+        "✅ Event Minigame berhasil dibuka\n\n" ..
+        "Level input : " .. level .. "\n" ..
+        "Nilai target: " .. targetValue
+    )
 
     gg.clearResults()
 end
 
 function Powerball_Event()
     gg.clearResults()
+
+    local input = gg.prompt(
+        {"Masukkan level:"},
+        {"0"},
+        {"number"}
+    )
+
+    if not input then
+        return
+    end
+
+    local level = tonumber(input[1])
+
+    if not level or level < 1 then
+        gg.alert("❌ Level tidak valid")
+        return
+    end
+
+    -- Input 1099 -> target 1098
+    local targetValue = level - 1
+
+    -- Search signature
     gg.searchNumber("103079301504", gg.TYPE_QWORD)
 
     local res = gg.getResults(10)
+
     if #res == 0 then
         gg.alert("❌ Data tidak ditemukan")
         gg.clearResults()
         return
     end
 
-    local original = {}
-    local edit = {}
+    local tempEdit = {}
+    local finalEdit = {}
 
     for _, v in ipairs(res) do
         local addr = v.address - 20
 
-        -- Simpan nilai asli
-        local old = gg.getValues({
-            {address = addr, flags = gg.TYPE_DWORD}
-        })
-
-        table.insert(original, old[1])
-
-        -- Ubah menjadi 300
-        table.insert(edit, {
+        -- Tahap 1: ubah menjadi 300
+        table.insert(tempEdit, {
             address = addr,
             flags = gg.TYPE_DWORD,
             value = 300
         })
-    end
 
-    -- Edit ke 300
-    gg.setValues(edit)
-
-    gg.alert("✅ Powerball Unlocked\nCek Puzzle Sekarang")
-
-    -- Kembalikan ke nilai awal
-    gg.setValues(original)
-
-    gg.clearResults()
-end
-
-function Weekly_Competition()
-
-    local p = gg.prompt(
-        {
-            "🏆 Masukkan poin mu sekarang :",
-            "🏆 Edit poin menjadi :"
-        },
-        {
-            "1",
-            "1"
-        },
-        {
-            "number",
-            "number"
-        }
-    )
-
-    if not p then
-        gg.toast("Dibatalkan")
-        return
-    end
-
-    local level = tonumber(p[1])
-    local editValue = tonumber(p[2])
-
-    if not level or not editValue then
-        gg.alert("Input tidak valid")
-        return
-    end
-
-    if editValue < 1 or editValue > 100000 then
-        gg.alert("Edit level puzzle hanya boleh antara 1-100000")
-        return
-    end
-
-    gg.clearResults()
-
-    gg.toast("Searching...")
-    gg.searchNumber(level .. "X4", gg.TYPE_DWORD)
-
-    local resultCount = gg.getResultsCount()
-
-    if resultCount == 0 then
-        gg.alert("Value tidak ditemukan")
-        return
-    end
-
-    gg.toast("Ditemukan : " .. resultCount)
-
-    -- REFINE MANUAL
-    while gg.getResultsCount() > 20 do
-
-        local refineInput = gg.prompt(
-            {
-                "Masukkan poin saat ini :"
-            },
-            {
-                tostring(level + 1)
-            },
-            {
-                "number"
-            }
-        )
-
-        if not refineInput then
-
-            gg.toast("Main puzzle dulu...")
-
-            gg.setVisible(false)
-
-            repeat
-                gg.sleep(100)
-            until gg.isVisible()
-
-            gg.setVisible(false)
-
-        else
-
-            level = tonumber(refineInput[1])
-            gg.refineNumber(level .. "X4", gg.TYPE_DWORD)
-            gg.toast(
-                "Level : " ..
-                level ..
-                " | Result : " ..
-                gg.getResultsCount()
-            )
-
-        end
-    end
-
-    local count = gg.getResultsCount()
-
-if count == 0 then
-    gg.alert("Anchor tidak ditemukan")
-    return
-end
-
-local results = gg.getResults(count)
-
-    table.sort(results, function(a, b)
-        return math.abs(tonumber(a.value)) >
-               math.abs(tonumber(b.value))
-    end)
-
-    local anchor1 = results[1].address
-    local anchor2 = results[2].address
-
-    local edits = {
-        {
-            address = anchor1 - 4,
+        -- Tahap 2: ubah 300 menjadi target
+        table.insert(finalEdit, {
+            address = addr,
             flags = gg.TYPE_DWORD,
-            value = 0
-        },
-        {
-            address = anchor1,
-            flags = gg.TYPE_DWORD,
-            value = editValue
-        },
+            value = targetValue
+        })
+    end
 
-        {
-            address = anchor2 - 4,
-            flags = gg.TYPE_DWORD,
-            value = 0
-        },
-        {
-            address = anchor2,
-            flags = gg.TYPE_DWORD,
-            value = editValue
-        }
-    }
+    -- 1. Ubah ke 300
+    gg.setValues(tempEdit)
 
-    gg.setValues(edits)
+    -- 2. Tunggu 500 milidetik
+    gg.sleep(1000)
 
-    gg.clearResults()
+    -- 3. Ubah 300 menjadi target value
+    gg.setValues(finalEdit)
 
     gg.alert(
-        "✅ Edit berhasil\n\n" ..
-        "Poin Weekly Champion: " .. editValue
+        "✅ Powerball Event berhasil dibuka\n\n" ..
+        "Level input : " .. level .. "\n" ..
+        "Nilai target: " .. targetValue
     )
 
+    gg.clearResults()
+end
+
+function Flip_Card_Stars()
+    gg.alert(
+        "⭐ Petunjuk\n\n" ..
+        "Setelah jumlah bintang berubah, mainkan 1 kali balik ubin.\n\n" ..
+        "Setelah itu bintang akan menjadi permanen."
+    )
+    gg.clearResults()
+
+    gg.searchNumber(
+        "696C4624h;65685470h;656C6954h;616C6142h;0065636Eh;696C461Eh;65685470h;656C6954h;65726F43h;00000000h;00000000h:349",
+        gg.TYPE_DWORD
+    )
+
+    gg.refineNumber("696C4624h", gg.TYPE_DWORD)
+
+    local anchorResult = gg.getResults(1)
+
+    if #anchorResult == 0 then
+        gg.alert("❌ Data Flip Card tidak ditemukan")
+        gg.clearResults()
+        return
+    end
+
+    local input = gg.prompt(
+        {"Masukkan Jumlah Bintang:"},
+        {"100000"},
+        {"number"}
+    )
+
+    if not input then
+        gg.clearResults()
+        return
+    end
+
+    local targetValue = tonumber(input[1])
+
+    if not targetValue then
+        gg.alert("❌ Value tidak valid")
+        gg.clearResults()
+        return
+    end
+
+    local anchor = anchorResult[1].address
+    local edit = {}
+
+    for i = 88, 89 do
+        table.insert(edit, {
+            address = anchor + i,
+            flags = gg.TYPE_DWORD,
+            value = (i == 88) and 0 or targetValue
+        })
+    end
+
+    gg.setValues(edit)
+
+    gg.alert(
+        "✅ Flip Card Stars\n\n" ..
+        "Offset +88 = 0\n" ..
+        "Offset +89 = " .. targetValue
+    )
+
+    gg.clearResults()
 end
 
 function Unlimited_Send()
