@@ -48230,7 +48230,7 @@ function Flip_Card_Stars()
         gg.TYPE_DWORD
     )
 
-    gg.refineNumber("696C4624h", gg.TYPE_DWORD)
+    gg.refineNumber("696C461Eh", gg.TYPE_DWORD)
 
     local anchorResult = gg.getResults(1)
 
@@ -48263,12 +48263,12 @@ function Flip_Card_Stars()
 
     local edit = {
         {
-            address = anchor + 88,
+            address = anchor + 6,
             flags = gg.TYPE_DWORD,
             value = 0
         },
         {
-            address = anchor + 89,
+            address = anchor + 7,
             flags = gg.TYPE_DWORD,
             value = targetValue
         }
@@ -48279,9 +48279,7 @@ function Flip_Card_Stars()
     gg.clearResults()
 
     gg.alert(
-        "✅ Flip Card Stars\n\n" ..
-        "Offset +88 = 0\n" ..
-        "Offset +89 = " .. targetValue
+        "✅ Flip Card Stars : " .. targetValue
     )
 end
 
