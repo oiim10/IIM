@@ -48221,7 +48221,7 @@ function Flip_Card_Stars()
 
     local input = gg.prompt(
         {"Masukkan Jumlah Bintang:"},
-        {"100000"},
+        {"10000"},
         {"number"}
     )
 
@@ -48249,33 +48249,43 @@ function Flip_Card_Stars()
 
     gg.refineNumber("696C461Eh", gg.TYPE_DWORD)
 
-    local anchorResult = gg.getResults(1)
+    local results = gg.getResults(gg.getResultsCount())
 
-    if #anchorResult == 0 then
+    if #results == 0 then
         gg.alert("❌ Data Flip Card tidak ditemukan")
         return
     end
 
-    local anchor = anchorResult[1].address
+    local edit = {}
 
-local edit = {
-        {
-            address = anchor + (6 * 4),
+    for i, result in ipairs(results) do
+        table.insert(edit, {
+            address = result.address + (6 * 4),
             flags = gg.TYPE_DWORD,
-            value = 0
-        },
-        {
-            address = anchor + (7 * 4),
+            value = 0,
+            name = "Flip Card " .. i .. " - Offset 6"
+        })
+
+        table.insert(edit, {
+            address = result.address + (7 * 4),
             flags = gg.TYPE_DWORD,
-            value = targetValue
-        }
-    }
+            value = targetValue,
+            name = "Flip Card " .. i .. " - Stars"
+        })
+    end
 
-
+    -- Edit semua result
     gg.setValues(edit)
-   gg.addListItems(edit)
+
+    -- Masukkan semua address hasil edit ke Saved List
+    gg.addListItems(edit)
+
     gg.alert(
-        "✅ Flip Card Stars : " .. targetValue
+        "✅ Flip Card Stars : " .. targetValue ..
+        "\n\n" ..
+        "📌 Result ditemukan : " .. #results ..
+        "\n📌 Address diedit : " .. (#results * 2) ..
+        "\n📌 Semua address telah disimpan ke Saved List."
     )
 end
 
