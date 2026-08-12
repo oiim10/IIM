@@ -48217,13 +48217,12 @@ function Powerball_Event()
 end
 
 function Flip_Card_Stars()
+    gg.clearResults()
     gg.alert(
         "⭐ Petunjuk\n\n" ..
         "Setelah jumlah bintang berubah, mainkan 1 kali balik ubin.\n\n" ..
         "Setelah itu bintang akan menjadi permanen."
     )
-
-    gg.clearResults()
 
     gg.searchNumber(
         "696C4624h;65685470h;656C6954h;616C6142h;0065636Eh;696C461Eh;65685470h;656C6954h;65726F43h;00000000h;00000000h:349",
@@ -48236,7 +48235,6 @@ function Flip_Card_Stars()
 
     if #anchorResult == 0 then
         gg.alert("❌ Data Flip Card tidak ditemukan")
-        gg.clearResults()
         return
     end
 
@@ -48247,7 +48245,6 @@ function Flip_Card_Stars()
     )
 
     if not input then
-        gg.clearResults()
         return
     end
 
@@ -48255,7 +48252,6 @@ function Flip_Card_Stars()
 
     if not targetValue then
         gg.alert("❌ Value tidak valid")
-        gg.clearResults()
         return
     end
 
@@ -48275,8 +48271,6 @@ function Flip_Card_Stars()
     }
 
     gg.setValues(edit)
-
-    gg.clearResults()
 
     gg.alert(
         "✅ Flip Card Stars : " .. targetValue
