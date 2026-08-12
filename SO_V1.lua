@@ -48222,6 +48222,7 @@ function Flip_Card_Stars()
         "Setelah jumlah bintang berubah, mainkan 1 kali balik ubin.\n\n" ..
         "Setelah itu bintang akan menjadi permanen."
     )
+
     gg.clearResults()
 
     gg.searchNumber(
@@ -48259,25 +48260,29 @@ function Flip_Card_Stars()
     end
 
     local anchor = anchorResult[1].address
-    local edit = {}
 
-    for i = 88, 89 do
-        table.insert(edit, {
-            address = anchor + i,
+    local edit = {
+        {
+            address = anchor + 88,
             flags = gg.TYPE_DWORD,
-            value = (i == 88) and 0 or targetValue
-        })
-    end
+            value = 0
+        },
+        {
+            address = anchor + 89,
+            flags = gg.TYPE_DWORD,
+            value = targetValue
+        }
+    }
 
     gg.setValues(edit)
+
+    gg.clearResults()
 
     gg.alert(
         "✅ Flip Card Stars\n\n" ..
         "Offset +88 = 0\n" ..
         "Offset +89 = " .. targetValue
     )
-
-    gg.clearResults()
 end
 
 function Unlimited_Send()
