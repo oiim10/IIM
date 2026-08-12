@@ -48258,18 +48258,19 @@ function Flip_Card_Stars()
 
     local anchor = anchorResult[1].address
 
-    local edit = {
+local edit = {
         {
-            address = anchor + 6,
+            address = anchor + (6 * 4),
             flags = gg.TYPE_DWORD,
             value = 0
         },
         {
-            address = anchor + 7,
+            address = anchor + (7 * 4),
             flags = gg.TYPE_DWORD,
             value = targetValue
         }
     }
+
 
     gg.setValues(edit)
 
