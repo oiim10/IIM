@@ -900,7 +900,13 @@ SkinData = {
 {name="SUMMER COW", code="r268Skins"},	
 {name="VOYAGE SHIP", code="r269Skins"},	
 {name="VOYAGE PORT", code="r270Skins"},
-{name="VOYAGE CHICKEN", code="r271Skins"},		
+{name="VOYAGE CHICKEN", code="r271Skins"},	
+{name="UNDERSEA HELICOPTER", code="r272Skins"},	
+{name="UNDERSEA HANGAR", code="r273Skins"},
+{name="UNDERSEA SHEEP", code="r274Skins"},	
+{name="HARVEST SHIP", code="r275Skins"},	
+{name="HARVEST PORT", code="r276Skins"},
+{name="HARVEST CHICKEN", code="r277Skins"},	
 }
 
 function SearchSkin()
@@ -1216,6 +1222,12 @@ if selected == "r263Skins" then hack("Sheep_14") end
 if selected == "r264Skins" then hack("Pig_1") end
 if selected == "r265Skins" then hack("Pig_2") end
 
+if selected == "r272Skins" then Skin_Dynamic_1() end
+if selected == "r273Skins" then Skin_Dynamic_2() end
+if selected == "r274Skins" then Skin_Dynamic_3() end
+if selected == "r275Skins" then hack("Skins_1") end
+if selected == "r276Skins" then hack("Skins_2") end
+if selected == "r277Skins" then Skin_Dynamic_4() end
   hack(refs[pick])
   gg.toast("✔ Applied: " .. names[pick])
 end
@@ -3634,6 +3646,7 @@ MXC = gg.choice({
 "🚁 • SKIN 23 CHRISTMAS HELICOPTER",
 "🚁 • SKIN 24 SPRING HELICOPTER",
 "🚁 • SKIN 25 ITALIAN HELICOPTER",
+"🚁 • SKIN 26 UNDERSEA HELICOPTER",				
 '🔙 • BACK'
 	  }, nil,
 [==[
@@ -3667,7 +3680,8 @@ MXC = gg.choice({
   if MaxJES_2 == 23 then Helicopter_Dynamic_17() end
   if MaxJES_2 == 24 then Helicopter_Dynamic_14() end
   if MaxJES_2 == 25 then Helicopter_Dynamic_15() end
-  if MaxJES_2 == 26 then Menu_Option(11) end
+  if MaxJES_2 == 26 then Skin_Dynamic_1() end		
+  if MaxJES_2 == 27 then Menu_Option(11) end
 	
 	elseif menu_tipo == 103 then
     MaxJES_3 = gg.choice({
@@ -3695,6 +3709,7 @@ MXC = gg.choice({
 "🚁 • SKIN 22 PRIVATE HELIPAD",
 "🚁 • SKIN 23 CHRISTMAS HELIPAD",
 "🚁 • SKIN 24 ITALIAN HELIPAD",
+"🚁 • SKIN 25 UNDERSEA HANGAR",
 '🔙 • BACK'
 	  }, nil,
 [==[
@@ -3727,7 +3742,8 @@ MXC = gg.choice({
   if MaxJES_3 == 22 then Helipad_Dynamic_23() end 
   if MaxJES_3 == 23 then Helipad_Dynamic_24() end  
   if MaxJES_3 == 24 then Helipad_Dynamic_20() end
-  if MaxJES_3 == 25 then Menu_Option(11) end
+  if MaxJES_3 == 25 then Skin_Dynamic_2() end	
+  if MaxJES_3 == 26 then Menu_Option(11) end
 	
 	elseif menu_tipo == 104 then
     MaxJES_4 = gg.choice({
@@ -3967,6 +3983,7 @@ if MaxJES_4 == 23 then hack("Train_20") end
 "🚢 • SKIN 19 BROADWAY SHIP",
 "🚢 • SKIN 20 EASTER SHIP",
 "🚢 • SKIN 21 VOYAGE SHIP",	
+"🚢 • SKIN 22 HARVEST SHIP",	
 '🔙 • BACK'   
 	  }, nil,[==[
 ╔════════════════════════╗                           
@@ -3995,7 +4012,8 @@ if MaxJES_4 == 23 then hack("Train_20") end
     if MaxJES_8 == 19 then hack("Ship_15") end
     if MaxJES_8 == 20 then hack("Ship_16") end
  	if MaxJES_8 == 21 then hack("Ship_17") end
-    if MaxJES_8 == 22 then Menu_Option(11) end
+	if MaxJES_8 == 22 then hack("Skin_1") end	
+    if MaxJES_8 == 23 then Menu_Option(11) end
 
 	elseif menu_tipo == 109 then
     MaxJES_9 = gg.choice({
@@ -4020,6 +4038,7 @@ if MaxJES_4 == 23 then hack("Train_20") end
 "⚓ • SKIN 19 BROADWAY PORT",  
 "⚓ • SKIN 20 EASTER PORT",
 "⚓ • SKIN 21 VOYAGE PORT",
+"⚓ • SKIN 22 HARVEST PORT",
 '🔙 • BACK'
 	  }, nil,[==[
 ╔════════════════════════╗                           
@@ -4048,7 +4067,8 @@ if MaxJES_4 == 23 then hack("Train_20") end
     if MaxJES_9 == 19 then Harbor_Dynamic_7() end
 	if MaxJES_9 == 20 then hack("Port_13") end
 	if MaxJES_9 == 21 then hack("Port_14") end
-    if MaxJES_9 == 22 then Menu_Option(11) end
+	if MaxJES_9 == 22 then hack("Skin_2") end	
+    if MaxJES_9 == 23 then Menu_Option(11) end
 
 	elseif menu_tipo == 110 then
     MaxJES_110 = gg.choice({
@@ -4076,7 +4096,8 @@ if MaxJES_4 == 23 then hack("Train_20") end
 "🐓 • SKIN 22 BROADWAY CHICKEN",
 "🐓 • SKIN 23 EASTER CHICKEN",
 "🐓 • SKIN 24 CULINARY CHICKEN",
-"🐓 • SKIN 25 VOYAGE CHICKEN",		
+"🐓 • SKIN 25 VOYAGE CHICKEN",	
+"🐓 • SKIN 26 HARVEST CHICKEN",		
 '🔙 • BACK'
 	  }, nil,[==[
 ╔════════════════════════╗                           
@@ -4109,7 +4130,8 @@ if MaxJES_4 == 23 then hack("Train_20") end
     if MaxJES_110 == 23 then hack("Chicken_12") end
     if MaxJES_110 == 24 then Chicken_Dynamic_12() end
     if MaxJES_110 == 25 then hack("Chicken_13") end
-    if MaxJES_110 == 26 then Menu_Option(11) end
+	if MaxJES_110 == 26 then Skin_Dynamic_4 end	
+    if MaxJES_110 == 27 then Menu_Option(11) end
 	  elseif menu_tipo == 111 then
     MaxJES_111 = gg.choice({
 "🐄 • SKIN 1 CORSAIR COW",
@@ -4200,6 +4222,7 @@ if MaxJES_4 == 23 then hack("Train_20") end
 "🐏 • SKIN 22 GATSBY SHEEP",
 "🐑 • SKIN 23 SPRING SHEEP",
 "🐏 • SKIN 24 ITALIAN SHEEPS",
+"🐏 • SKIN 25 UNDERSEA SHEEPS",
 '🔙 • BACK'
 	  }, nil,[==[
 ╔════════════════════════╗                           
@@ -4231,7 +4254,8 @@ if MaxJES_4 == 23 then hack("Train_20") end
     if MaxJES_112 == 22 then hack("Sheep_13") end
     if MaxJES_112 == 23 then Sheep_Dynamic_10() end
     if MaxJES_112 == 24 then hack("Sheep_14") end
-    if MaxJES_112 == 25 then Menu_Option(11) end 
+	if MaxJES_112 == 25 then Skin_Dynamic_3 end	
+    if MaxJES_112 == 26 then Menu_Option(11) end
 	elseif menu_tipo == 113 then
     MaxJESxd_113 = gg.choice({
     "🐖 • SKIN 1 CEREMONIAL PIG", 
@@ -15104,6 +15128,58 @@ function Airplane_Dynamic_7()
         function() hackDynamic_26h("rExpe_2") end)
 end
 
+--============================
+--	SKIN DYNAMIC EDIT
+--============================
+function Skin(data, dyn)
+    LoadingAuto("Search Skin Dynamic", 2)
+    gg.processResume()
+    gg.clearResults()
+
+    gg.searchNumber("7596256584804597814", gg.TYPE_QWORD)
+
+    local val = gg.getResults(gg.getResultsCount())
+
+    for _, v in ipairs(val) do
+        v.address = v.address + 0x2C
+    end
+
+    val = gg.getValues(val)
+
+    for _, v in ipairs(val) do
+        v.address = v.value
+    end
+
+    for i, value in ipairs(data) do
+        gg.setValues({{
+            address = val[1].address + (i - 1) * 0x4,
+            flags = gg.TYPE_DWORD,
+            value = value
+        }})
+    end
+
+    dyn()
+end
+
+function Skin_Dynamic_1()
+    Skin({"6E696B53h","6C65485Fh","706F6369h","5F726574h","65646E75h","74617772h","375F7265h","00000039h"},
+        function() hackDynamic_29h("rExpe_2") end)
+end
+
+function Skin_Dynamic_2()
+    Skin({"6E696B53h","6C65485Fh","706F6369h","50726574h","6563616Ch","646E755Fh","61777265h","5F726574h","00003937h"},
+        function() hackDynamic_34h("rExpe_2") end)
+end
+
+function Skin_Dynamic_3()
+    Skin({"6E696B53h","6568535Fh","755F7065h","7265646Eh","65746177h","39375F72h"},
+        function() hackDynamic_24h("rExpe_2") end)
+end
+
+function Skin_Dynamic_4()
+    Skin({"6E696B53h","6968435Fh","6E656B63h","7261685Fh","74736576h","0030385Fh"},
+        function() hackDynamic_23h("rExpe_2") end)
+end
 --====================
 --SKIN PELABUHAN EDIT
 --====================
@@ -33621,6 +33697,28 @@ elseif option == "Sheep_14" then -- Italian Sheep
     add_to_2 = "1766874990"
     add_to_1 = "1768641324" 
 	setdAhI()
+elseif option == "Skin_1" then -- SKIN Ship Harvest
+    add_to_8 = 1
+    add_to_7 = 0
+    add_to_6 = "696B5328h"
+    add_to_5 = "68535F6Eh"
+    add_to_4 = "685F7069h"
+    add_to_3 = "65767261h"
+    add_to_2 = "385F7473h"
+    add_to_1 = "00000030h"
+    setdAhI()
+
+elseif option == "Skin_2" then -- SKIN Harbor Harvest
+    add_to_8 = 1
+    add_to_7 = 0
+    add_to_6 = "696B532Ch"
+    add_to_5 = "61485F6Eh"
+    add_to_4 = "726F6272h"
+    add_to_3 = "7261685Fh"
+    add_to_2 = "74736576h"
+    add_to_1 = "0030385Fh"
+    setdAhI()
+
 		--Decoración Valentin  
  --------------------------
 	elseif option == "r1p" then
