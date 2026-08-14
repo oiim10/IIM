@@ -4130,7 +4130,7 @@ if MaxJES_4 == 23 then hack("Train_20") end
     if MaxJES_110 == 23 then hack("Chicken_12") end
     if MaxJES_110 == 24 then Chicken_Dynamic_12() end
     if MaxJES_110 == 25 then hack("Chicken_13") end
-	if MaxJES_110 == 26 then Skin_Dynamic_4 end	
+	if MaxJES_110 == 26 then Skin_Dynamic_4() end	
     if MaxJES_110 == 27 then Menu_Option(11) end
 	  elseif menu_tipo == 111 then
     MaxJES_111 = gg.choice({
