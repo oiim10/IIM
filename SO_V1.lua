@@ -4254,7 +4254,7 @@ if MaxJES_4 == 23 then hack("Train_20") end
     if MaxJES_112 == 22 then hack("Sheep_13") end
     if MaxJES_112 == 23 then Sheep_Dynamic_10() end
     if MaxJES_112 == 24 then hack("Sheep_14") end
-	if MaxJES_112 == 25 then Skin_Dynamic_3 end	
+	if MaxJES_112 == 25 then Skin_Dynamic_3() end	
     if MaxJES_112 == 26 then Menu_Option(11) end
 	elseif menu_tipo == 113 then
     MaxJESxd_113 = gg.choice({
