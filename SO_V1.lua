@@ -33700,23 +33700,23 @@ elseif option == "Sheep_14" then -- Italian Sheep
 elseif option == "Skin_1" then -- SKIN Ship Harvest
     add_to_8 = 1
     add_to_7 = 0
-    add_to_6 = "696B5328h"
-    add_to_5 = "68535F6Eh"
-    add_to_4 = "685F7069h"
-    add_to_3 = "65767261h"
-    add_to_2 = "385F7473h"
-    add_to_1 = "00000030h"
+    add_to_1 = "696B5328h"
+    add_to_2 = "68535F6Eh"
+    add_to_3 = "685F7069h"
+    add_to_4 = "65767261h"
+    add_to_5 = "385F7473h"
+    add_to_6 = "00000030h"
     setdAhI()
 
 elseif option == "Skin_2" then -- SKIN Harbor Harvest
     add_to_8 = 1
     add_to_7 = 0
-    add_to_6 = "696B532Ch"
-    add_to_5 = "61485F6Eh"
-    add_to_4 = "726F6272h"
-    add_to_3 = "7261685Fh"
-    add_to_2 = "74736576h"
-    add_to_1 = "0030385Fh"
+    add_to_1 = "696B532Ch"
+    add_to_2 = "61485F6Eh"
+    add_to_3 = "726F6272h"
+    add_to_4 = "7261685Fh"
+    add_to_5 = "74736576h"
+    add_to_6 = "0030385Fh"
     setdAhI()
 
 		--Decoración Valentin  
