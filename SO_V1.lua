@@ -48473,7 +48473,7 @@ end
     gg.addListItems(allResults)
 
     gg.alert("✨️ UNLIMITED SEND AND CONVERT CARD DONE!!\n"..
-			 "Created by RDHT RMDN")
+			 "Created by RDHT|OIIM")
 end
 
 function Change_Quantity()
@@ -48544,7 +48544,7 @@ function Change_Quantity()
 	    "📝 CURRENT CARD COUNT : " .. cari .. "\n" ..
 	    "📝 NEW CARD COUNT : " .. ganti .. "\n" ..
 	    "🔍 TOTAL RESULTS : " .. totalFound .. "\n" .. 
-		"Created by RDHT RMDN"
+		"Created by RDHT|OIIM"
 	)
 end
 
@@ -48631,7 +48631,7 @@ gg.alert(
     "📝 CURRENT CARD COUNT : " .. bawah .. " → " .. atas .. "\n" ..
     "📝 NEW CARD COUNT : " .. ganti .. "\n" ..
     "🔍 TOTAL RESULTS : " .. totalFound .. "\n" ..
-	"Created by RDHT RMDN"
+	"Created by RDHT|OIIM"
 )
 end
 
@@ -49059,7 +49059,7 @@ function Unlock_Artifact()
         gg.setValues(t)
         gg.alert(
 			"🏆 UNLOCK ARTIFACT SUCCESS 🏆\nEdited: "..#t.."\n" ..
-			"Created by RDHT RMDN")
+			"Created by RDHT|OIIM")
     else
         gg.alert("❌ DATA NOT FOUND")
     end
@@ -50354,7 +50354,7 @@ function Main_Menu()
         "➤ | PREMIUM FEATURES",
         "➤ | EXIT SCRIPT"
     }, nil,
-    "          💻 SCRIPT BY RR | RDHT 💻 \n"..
+    "          💻 SCRIPT BY OIIM 💻 \n"..
     "══════════════════════\n" ..
     Get_Account_Info()
     )
