@@ -6501,14 +6501,14 @@ gg.searchNumber(
     gg.alert("GOLDPASS ACTIVATED 🔓\nRESULTS : " .. #results)
 end
 
-function Surf_Goldpass()
+function Undersea_Goldpass()
     gg.clearResults()
     gg.setRanges(gg.REGION_C_ALLOC | gg.REGION_ANONYMOUS | gg.REGION_OTHER)
 
   local unlockTime = os.time{
     year = 2026,
-    month = 7,
-    day = 10,
+    month = 8,
+    day = 21,
     hour = 16,
     min = 0,
     sec = 0
@@ -6540,11 +6540,11 @@ function Surf_Goldpass()
   gg.clearResults()
 
   gg.searchNumber(
-    "61655324h;546E6F73h;656B6369h;6E695774h;00776F64h;7275730Eh;37375F66h;696B5322h:425",
+    "61655324h;546E6F73h;656B6369h;6E695774h;00776F64h;6C6E7512h;5F6B636Fh;00007473h;7374730Eh;65726F63h;646E751Ah;61777265h;5F726574h;00003937h;00000031h:425",
     gg.TYPE_DWORD
   )
 
- gg.refineNumber("696B5322h", gg.TYPE_DWORD)
+ gg.refineNumber("00000031h", gg.TYPE_DWORD)
 
  local results = gg.getResults(10)
 
@@ -6580,14 +6580,14 @@ function Surf_Goldpass()
     gg.alert("GOLDPASS ACTIVATED 🔓\nRESULTS : " .. #results)
 end
 
-function Vatican_Goldpass()
+function Harvest_Goldpass()
     gg.clearResults()
     gg.setRanges(gg.REGION_C_ALLOC | gg.REGION_ANONYMOUS | gg.REGION_OTHER)
 
   local unlockTime = os.time{
     year = 2026,
-    month = 7,
-    day = 31,
+    month = 9,
+    day = 11,
     hour = 16,
     min = 0,
     sec = 0
@@ -6619,11 +6619,11 @@ function Vatican_Goldpass()
   gg.clearResults()
 
   gg.searchNumber(
-    " 61655324h;546E6F73h;656B6369h;6E695774h;00776F64h;63617616h;6F697461h;38375F6Eh;696B532Ch:425",
+    "61655324h;546E6F73h;656B6369h;6E695774h;00776F64h;61657318h;746E6F73h;656B6369h;72616814h;74736576h;0030385Fh;696B5328h:425",
     gg.TYPE_DWORD
   )
 
- gg.refineNumber("696B532Ch", gg.TYPE_DWORD)
+ gg.refineNumber("696B5328h", gg.TYPE_DWORD)
 
  local results = gg.getResults(10)
 
@@ -49079,12 +49079,12 @@ end
 
 local menu = {
     {
-        label = pretty("VOOYAGE PASS"),
-        func = Surf_Goldpass
+        label = pretty("UNDERSEA PASS"),
+        func = Undersea_Goldpass
     },
 	    {
-        label = pretty("SUMMER PASS"),
-        func = Vatican_Goldpass
+        label = pretty("HARVEST PASS"),
+        func = Harvest_Goldpass
     }
 }
 
