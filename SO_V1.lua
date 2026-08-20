@@ -31211,7 +31211,7 @@ then
     end
 	if option == "lm9" or option == "lm10"
     then
-        if int1[1] > 5000 then
+        if int1[1] > 10000 then
             gg.alert("⚠️ Jumlah maksimal untuk item tersebut adalah 5000")
             return
         end
