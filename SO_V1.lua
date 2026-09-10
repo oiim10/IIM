@@ -30769,9 +30769,9 @@ if varcJExpe_2 == "rExpe_2" then
 
     local t = gg.prompt(
         {
-            "Hari",
-            "Jam",
-            "Menit"
+            "Hari|Days",
+            "Jam|Hours",
+            "Menit|Minutes"
         },
         {
             "0",
@@ -30878,9 +30878,9 @@ if varcJExpe_2 == "rExpe_2" then
 
     local t = gg.prompt(
         {
-            "Hari",
-            "Jam",
-            "Menit"
+            "Hari|Days",
+            "Jam|Hours",
+            "Menit|Minutes"
         },
         {
             "0",
@@ -31048,7 +31048,7 @@ function time(option)
 if option == "lm1" or option == "lm8" or option == "Digging_X2" then
 
     local t = gg.prompt(
-        {"Hari", "Jam", "Menit"},
+        {"Hari|Hours", "Jam|Days", "Menit|Minutes"},
         {"0", "1", "0"},
         {"number", "number", "number"}
     )
