@@ -6465,21 +6465,49 @@ end
 --=================
 --EDIT GOLDEN TICKET --1.953.849.880; 1.718.773.108 ;929.003.884;49;28:209
 --=================
-function Futuristic_Goldpass()
+function Halloween_Goldpass()
     gg.clearResults()
     gg.setRanges(gg.REGION_C_ALLOC | gg.REGION_ANONYMOUS | gg.REGION_OTHER)
+  local unlockTime = os.time{
+    year = 2026,
+    month = 10,
+    day = 23,
+    hour = 16,
+    min = 0,
+    sec = 0
+  }
 
+  local now = os.time()
+
+  if now < unlockTime then
+    local remain = unlockTime - now
+
+    local days = math.floor(remain / 86400)
+    local hours = math.floor((remain % 86400) / 3600)
+    local mins = math.floor((remain % 3600) / 60)
+
+    gg.alert(
+      "🔒 GOLDPASS LOCKED\n\n" ..
+      "⏳ AVAILABLE IN:\n" ..
+      days .. "d " ..
+      hours .. "h " ..
+      mins .. "m\n\n" ..
+      "📅 UNLOCK TIME:\n" ..
+      "23-10-2026 16:00:00"
+    )
+    return
+  end
     gg.toast("🔒 OPEN GOLDPASS...")
 	  LoadingAuto("Script Loading...", 10)
     gg.processResume()
     gg.clearResults()
 
 gg.searchNumber(
-    "61655324h;546E6F73h;656B6369h;6E695774h;00776F64h;74756612h;5F657275h;00003637h;696B5328h:425",
+    "61655324h;546E6F73h;656B6369h;6E695774h;00776F64h;6C616818h;65776F6Ch;385F6E65h;00000032h;00000031h:425",
     gg.TYPE_DWORD
   )
 
- gg.refineNumber("696B5328h", gg.TYPE_DWORD)
+ gg.refineNumber("00000031h", gg.TYPE_DWORD)
 
     local results = gg.getResults(10)
 
@@ -6515,14 +6543,14 @@ gg.searchNumber(
     gg.alert("GOLDPASS ACTIVATED 🔓\nRESULTS : " .. #results)
 end
 
-function Undersea_Goldpass()
+function Western_Goldpass()
     gg.clearResults()
     gg.setRanges(gg.REGION_C_ALLOC | gg.REGION_ANONYMOUS | gg.REGION_OTHER)
 
   local unlockTime = os.time{
     year = 2026,
-    month = 8,
-    day = 21,
+    month = 10,
+    day = 2,
     hour = 16,
     min = 0,
     sec = 0
@@ -6544,7 +6572,7 @@ function Undersea_Goldpass()
       hours .. "h " ..
       mins .. "m\n\n" ..
       "📅 UNLOCK TIME:\n" ..
-      "10-07-2026 16:00:00"
+      "02-10-2026 16:00:00"
     )
     return
   end
@@ -6554,7 +6582,7 @@ function Undersea_Goldpass()
   gg.clearResults()
 
   gg.searchNumber(
-    "61655324h;546E6F73h;656B6369h;6E695774h;00776F64h;6C6E7512h;5F6B636Fh;00007473h;7374730Eh;65726F63h;646E751Ah;61777265h;5F726574h;00003937h;00000031h:425",
+    "61655324h;546E6F73h;656B6369h;6E695774h;00776F64h;6C697716h;73657764h;31385F74h;00000031h:425",
     gg.TYPE_DWORD
   )
 
@@ -49124,13 +49152,17 @@ end
 
 local menu = {
     {
-        label = pretty("UNDERSEA PASS"),
-        func = Undersea_Goldpass
-    },
-	    {
         label = pretty("HARVEST PASS"),
         func = Harvest_Goldpass
-    }
+    },
+	    {
+        label = pretty("WESTERN PASS"),
+        func = Western_Goldpass
+    },
+	{
+		label = pretty("HALLOWEEN PASS"),
+        func = Halloween_Goldpass
+	}
 }
 
 local labels = {}
