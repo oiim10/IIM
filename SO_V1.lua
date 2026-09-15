@@ -49173,7 +49173,7 @@ end
 local choice = gg.choice(
     labels,
     nil,
-    "            🎯SELECT GOLDPASS\n━━━━━━━━━━━━━━━━━\n✅AVAILABLE NOW : FUTURISTIC GOLDPASS"
+    "            🎯SELECT GOLDPASS\n━━━━━━━━━━━━━━━━━\n✅AVAILABLE NOW : HARVEST GOLDPASS"
 )
 
 if not choice then
