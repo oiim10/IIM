@@ -29,10 +29,10 @@ Detected package:
     os.exit()
 end
 gg.alert(
-        "📢NEW UPDATE\n" ..
-        "🤠WildWest Pass and 🎃Halloween Pass\n" ..
-	    "6 Skin Pass\n" ..
-	    "Check on Golden Pass and Skins"
+        "📢 NEW UPDATE\n" ..
+        "🤠 WildWest Pass and 🎃Halloween Pass has been added\n" ..
+	    "🎭 6 Skin Pass has been added\n" ..
+	    "🔍 Check on Golden Pass and Skins Menu"
 )
 local pilih = gg.alert([[
 📖 CARA MENGGUNAKAN SCRIPT
