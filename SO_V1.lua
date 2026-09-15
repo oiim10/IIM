@@ -29,8 +29,10 @@ Detected package:
     os.exit()
 end
 gg.alert(
-        "⚠️ WARNING ⚠️\n\n" ..
-        "Pada update Patch 37.0.0, Playrix membatasi pemain untuk tidak melakukan perubahan Kustomisasi Profil (Badge, Style Name, Frame, Title Expedition), diharapkan tidak melakukan pengisian untuk item-item tersebut, atau sistem akun kalian akan terblokir untuk akses pertemanan/join Coop"
+        "📢NEW UPDATE\n" ..
+        "🤠WildWest Pass and 🎃Halloween Pass\n" ..
+	    "6 Skin Pass\n" ..
+	    "Check on Golden Pass and Skins"
 )
 local pilih = gg.alert([[
 📖 CARA MENGGUNAKAN SCRIPT
@@ -907,6 +909,12 @@ SkinData = {
 {name="HARVEST SHIP", code="r275Skins"},	
 {name="HARVEST PORT", code="r276Skins"},
 {name="HARVEST CHICKEN", code="r277Skins"},	
+{name="WESTERN AIRPLANE", code="r278Skins"},	
+{name="WESTERN AIRPORT", code="r279Skins"},
+{name="WESTERN COW", code="r280Skins"},
+{name="HALLOWEEN TRAIN", code="r281Skins"},	
+{name="HALLOWEEN TRAIN STATION", code="r282Skins"},
+{name="HALLOWEEN CHICKEN", code="r283Skins"},	
 }
 
 function SearchSkin()
@@ -1228,6 +1236,12 @@ if selected == "r274Skins" then Skin_Dynamic_3() end
 if selected == "r275Skins" then hack("Skins_1") end
 if selected == "r276Skins" then hack("Skins_2") end
 if selected == "r277Skins" then Skin_Dynamic_4() end
+if selected == "r278Skins" then Skin_Dynamic_5() end
+if selected == "r279Skins" then Skin_Dynamic_6() end
+if selected == "r280Skins" then hack("Skins_3") end
+if selected == "r281Skins" then Skin_Dynamic_7() end
+if selected == "r282Skins" then Skin_Dynamic_8() end
+if selected == "r283Skins" then Skin_Dynamic_9() end
   hack(refs[pick])
   gg.toast("✔ Applied: " .. names[pick])
 end
@@ -15180,6 +15194,28 @@ function Skin_Dynamic_4()
     Skin({"6E696B53h","6968435Fh","6E656B63h","7261685Fh","74736576h","0030385Fh"},
         function() hackDynamic_23h("rExpe_2") end)
 end
+function Skin_Dynamic_5()
+    Skin({"6E696B53h","7269415Fh","6E616C70h","69775F65h","6577646Ch","385F7473h","9E020031h"},
+        function() hackDynamic_25h("rExpe_2") end)
+end
+function Skin_Dynamic_6()
+    Skin({"6E696B53h","7269415Fh","74726F70h","6C69775Fh","73657764h","31385F74h"},
+        function() hackDynamic_24h("rExpe_2") end)
+end
+function Skin_Dynamic_7()
+    Skin({"6E696B53h","6172545Fh","685F6E69h","6F6C6C61h","6E656577h","0032385Fh"},
+        function() hackDynamic_23h("rExpe_2") end)
+end
+function Skin_Dynamic_8()
+    Skin({"6E696B53h","6172545Fh","74536E69h","6F697461h","61685F6Eh","776F6C6Ch","5F6E6565h","FC003238h"},
+        function() hackDynamic_30h("rExpe_2") end)
+end
+function Skin_Dynamic_9()
+    Skin({"6E696B53h","6968435Fh","6E656B63h","6C61685Fh","65776F6Ch","385F6E65h","051B0032h"},
+        function() hackDynamic_25h("rExpe_2") end)
+end
+
+
 --====================
 --SKIN PELABUHAN EDIT
 --====================
@@ -33697,7 +33733,7 @@ elseif option == "Sheep_14" then -- Italian Sheep
     add_to_2 = "1766874990"
     add_to_1 = "1768641324" 
 	setdAhI()
-elseif option == "Skin_1" then -- SKIN Ship Harvest
+elseif option == "Skins_1" then -- SKIN Ship Harvest
     add_to_8 = 1
     add_to_7 = 0
     add_to_1 = "696B5328h"
@@ -33708,7 +33744,7 @@ elseif option == "Skin_1" then -- SKIN Ship Harvest
     add_to_6 = "00000030h"
     setdAhI()
 
-elseif option == "Skin_2" then -- SKIN Harbor Harvest
+elseif option == "Skins_2" then -- SKIN Harbor Harvest
     add_to_8 = 1
     add_to_7 = 0
     add_to_1 = "696B532Ch"
@@ -33718,7 +33754,16 @@ elseif option == "Skin_2" then -- SKIN Harbor Harvest
     add_to_5 = "74736576h"
     add_to_6 = "0030385Fh"
     setdAhI()
-
+elseif option == "Skins_3" then -- SKIN Harbor Harvest
+    add_to_8 = 1
+    add_to_7 = 0
+    add_to_1 = "696B5328h"
+    add_to_2 = "6F435F6Eh"
+    add_to_3 = "69775F77h"
+    add_to_4 = "6577646Ch"
+    add_to_5 = "385F7473h"
+    add_to_6 = "00000031h"
+    setdAhI()
 		--Decoración Valentin  
  --------------------------
 	elseif option == "r1p" then
