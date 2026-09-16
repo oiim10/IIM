@@ -6330,7 +6330,6 @@ elseif menu_tipo == 20000 then
         "🏆 UNLOCK ACHIEVEMENTS 🏆|⭐",
         "🏺 UNLOCK ARTIFACTS MUSEUM 🏺|⭐",
         "🐾 UNLOCK ALL ANIMALS ZOO 🐾|⭐",
-		"⛵ REGATTA ⛵|⭐",
         "🔚 BACK"
     }, nil, 
 [==[
@@ -6363,15 +6362,7 @@ elseif menu_tipo == 20000 then
         "https://raw.githubusercontent.com/oiim10/IIM/refs/heads/main/PF_ANIMAL",
             Unlock_Animal
         )
-	elseif opcao == 5 then
-        CheckAccess(
-        "https://raw.githubusercontent.com/oiim10/IIM/refs/heads/main/REGATA",
-            function()
-            showRegattaMenu()
-            REGATTA_MENU()
-            end
-        )
-	elseif opcao == 6 then Main_Menu() 
+	elseif opcao == 5 then Main_Menu() 
 	end
 -- =====================================================
 -- MENU 2 : DUPLICATE BUILDINGS
