@@ -47701,72 +47701,70 @@ end
 -- =====================================================
 -- SUB-FITUR: CLEARANCE OF LAND
 -- =====================================================
-function Clear_All_Land()
-gg.clearResults()
-gg.setRanges(gg.REGION_C_ALLOC | gg.REGION_OTHER)
 
-gg.toast("Searching land clearance data...")  
+    function Clear_All_Land()
+    gg.clearResults()
+    gg.setRanges(gg.REGION_C_ALLOC | gg.REGION_OTHER)
 
-gg.searchNumber(  
-    "70786512h;42646E61h;00007975h;70786512h;42646E61h;00007975h;00000004h:49",  
-    gg.TYPE_DWORD  
-)  
+    gg.toast("Searching land clearance data...")
 
-if gg.getResultCount() == 0 then  
-    gg.alert("🔙 Data not found")  
-    return  
-end  
+    gg.searchNumber(
+        "1886938387X368",
+        gg.TYPE_DWORD
+    )
 
-gg.toast("Refining to 4...")  
-gg.refineNumber("4", gg.TYPE_DWORD)  
+    if gg.getResultCount() == 0 then
+        gg.alert("🔙 Data not found")
+        return
+    end
 
-local count = gg.getResultCount()  
+    gg.toast("Refining to 1...")
+    gg.refineNumber("1", gg.TYPE_DWORD)
 
-if count == 0 then  
-    gg.alert("🔙 No value 4 found")  
-    return  
-end  
+    local count = gg.getResultCount()
 
-gg.toast("Found " .. count .. " results")  
+    if count == 0 then
+        gg.alert("🔙 No value 1 found")
+        return
+    end
 
-local batchSize = 10  
+    gg.toast("Found " .. count .. " results")
 
-for start = 1, count, batchSize do  
-    local results = gg.getResults(  
-        math.min(batchSize, count - start + 1),  
-        start - 1  
-    )  
+    local results = gg.getResults(count)
+    local batchSize = 10
 
-    local edits = {}  
+    for start = 1, count, batchSize do
+        local edits = {}
 
-    for _, v in ipairs(results) do  
-        edits[#edits + 1] = {  
-            address = v.address + (86 * 4),  
-            flags = gg.TYPE_DWORD,  
-            value = 6  
-        }  
-    end  
+        local finish = math.min(start + batchSize - 1, count)
 
-    gg.setValues(edits)  
+        for i = start, finish do
+            edits[#edits + 1] = {
+                address = results[i].address,
+                flags = gg.TYPE_DWORD,
+                value = 6
+            }
+        end
 
-    gg.toast(  
-        string.format(  
-            "Processing %d/%d",  
-            math.min(start + batchSize - 1, count),  
-            count  
-        )  
-    )  
+        gg.setValues(edits)
 
-    gg.sleep(500)  
-end  
+        gg.toast(
+            string.format(
+                "Processing %d/%d",
+                finish,
+                count
+            )
+        )
 
-gg.alert(  
-    "✅ Land clearance initiated!\n\n" ..  
-    "Edited: " .. count .. " entries"  
-)  
+        gg.sleep(500)
+    end
 
-gg.clearResults()
+    gg.alert(
+        "✅ Land clearance initiated!\n\n" ..
+        "Edited: " .. count .. " entries"
+    )
 
+    gg.clearResults()
 end
 
 -- =====================================================
