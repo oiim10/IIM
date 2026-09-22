@@ -7115,7 +7115,7 @@ function Tcash_Coin_Exp(variac)
 
     if variac == "tcash" then
         local p = gg.prompt(
-            {"Amount of tcash? [0;100000] Max 100000/3Month"},
+            {"Amount of tcash? [0;1000000] 1-1000000"},
             {1},
             {"number"}
         )
