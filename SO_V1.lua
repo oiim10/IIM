@@ -7121,7 +7121,7 @@ function Tcash_Coin_Exp(variac)
         )
         if not p then return end
         amount = tonumber(p[1])
-        if not amount or amount < 0 or amount > 100000 then
+        if not amount or amount < 0 or amount > 1000000 then
             gg.alert("❌ Invalid Amount")
             return
         end
