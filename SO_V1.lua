@@ -49629,7 +49629,27 @@ function showTicketInfo()
     gp1()
 end
 
-local p = gg.prompt(
+function other1()
+    gg.setVisible(false)
+    gg.clearResults()
+
+    local patterns = {
+        '32162031X4','32162030X4','32162025X4','32162024X4','32162027X4',
+        '32162026X4','32162021X4','32162020X4','32162023X4','32162022X4',
+        '32162017X4','32162016X4','32162019X4','32162018X4','32162045X4',
+        '32162044X4','32162047X4','32162046X4','32162041X4','32162040X4',
+        '32162043X4','32162042X4','32162037X4','32162036X4','32162039X4',
+        '32162038X4','32162033X4','32162032X4','32162035X4','32162034X4',
+        '32161997X4','32161996X4','32161999X4','32161998X4','32161993X4',
+        '32161992X4','32161995X4','32161994X4','32161989X4','32161988X4',
+        '32161991X4','32161990X4','32161987X4','32161986X4','32161983X4',
+        '32161982X4','32161985X4','32161984X4','32161981X4','32161980X4',
+        '32161979X4','32161978X4'
+    }
+
+    gg.alert("🌟 Select the star level in the industry")
+
+    local p = gg.prompt(
         { "🔢 Enter star level number [2–53]:", "🕑 Cooldown value [50;100]" },
         { nil, nil },
         { "number", "number" }
@@ -49644,7 +49664,7 @@ local p = gg.prompt(
         return
     end
     if not val or val < 50 or val > 100 then
-        gg.alert("❌ Invalid star value (must be 50 or 100).")
+        gg.alert("❌ Invalid star value (must be 99 or 100).")
         return
     end
 
