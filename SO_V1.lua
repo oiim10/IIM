@@ -49686,7 +49686,6 @@ function other1()
     gg.setValues(patch)
     gg.toast("✅ Pattern successfully set: " .. pattern .. " → " .. val)
 end
-
 --================================
 -- FREEZE AND CHANGE STAGE REWARD
 --================================
