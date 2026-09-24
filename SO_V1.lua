@@ -6313,7 +6313,7 @@ if GP == 6 then showTicketInfo() end
 if GP == 7 then Menu_Option(100006) end
 
 elseif menu_tipo == 200002 then
-    local EXP = ({
+    local EXP = gg.choice({
         "📖 Pre-use guide",
         "✅️ COMPLETE EVENT AND GET TITLE",
         "⏩️ SWAP EVENT",
