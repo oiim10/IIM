@@ -30,9 +30,9 @@ Detected package:
 end
 gg.alert(
         "📢 NEW UPDATE\n" ..
-        "🔄 FEATURE CHANGE PASS AND 🗺️EXPEDITION\n" ..
-	    "🏭 ACADEMY INDUSTRY\n" ..
-	    "🔍 SEKARANG KAMU BISA MENGGANTI SUPER PASS MENJADI GOLDEN TICKET DAN MENYELESAIKAN EVENT EXPEDITION HANYA SEKALI KLIK"
+        "🤠 WildWest Pass and 🎃Halloween Pass has been added\n" ..
+	    "🎭 6 Skin Pass has been added\n" ..
+	    "🔍 Check on Golden Pass and Skins Menu"
 )
 local pilih = gg.alert([[
 📖 CARA MENGGUNAKAN SCRIPT
@@ -6145,7 +6145,6 @@ elseif menu_tipo == 100000 then
         "💵 • CHANGE PRICE AND QUANTITY",
 		"📦 • MARKET BOX",
         "🏭 • FACTORY BOX",
-        "🏭 • ACADEMY INDUSTRI > FACTORY",
         "🔙 • BACK"
     }, nil, 
 [==[
@@ -6158,8 +6157,7 @@ elseif menu_tipo == 100000 then
     if MARKET == 2 then Change_Price_Quantity() end
     if MARKET == 3 then Factory_Market() end
     if MARKET == 4 then Factory_Box() end
-    if MARKET == 5 then other1()
-    if MARKET == 6 then Menu_Option(100006) end
+    if MARKET == 5 then Menu_Option(100006) end
 
 elseif menu_tipo == 100001 then
     ENHANCMENT = gg.choice({
@@ -6247,16 +6245,16 @@ elseif menu_tipo == 100003 then
       "✨• CHANGE QUANTITY CARD INSTAN",
       "🔚• BACK"
     }, nil, 
-    [==[
-    ╔══════════════════════╗
-                    ✨️ SCRIPT CARD ✨️
-    ╚══════════════════════╝
-    ]==])
+[==[
+╔══════════════════════╗
+                 ✨️ SCRIPT CARD ✨️
+╚══════════════════════╝
+]==])
     
-    if CARD == 1 then Unlimited_Send() end
-    if CARD == 2 then Change_Quantity() end
-    if CARD == 3 then Change_Quantity_Instan() end
-    if CARD == 4 then Menu_Option(100006) end
+if CARD == 1 then Unlimited_Send() end
+if CARD == 2 then Change_Quantity() end
+if CARD == 3 then Change_Quantity_Instan() end
+if CARD == 4 then Menu_Option(100006) end
 
 elseif menu_tipo == 100005 then
     local MG = gg.choice({
@@ -6276,104 +6274,15 @@ if MG == 2 then Powerball_Event() end
 if MG == 3 then Flip_Card_Stars() end
 if MG == 4 then Menu_Option(100006) end
 
-elseif menu_tipo == 200001 then
-    local GP = gg.choice({
-        "🎫 UNLOCK GOLD TICKET",
-        "🔄 CHANGE TICKET ",
-        "🔄 RESET TICKET",
-        "👻 SHOW HIDDEN TICKET ",
-        "🔎 QUERY CURRENT TICKET",
-        "📝 TICKET INFORMATION",
-        "🔚 BACK"
-    }, nil, 
-[==[
-╔══════════════════════╗
-        	    🎫 GOLDEN PASS MENU 🎫
-╚══════════════════════╝
-]==])
-    
-if GP == 1 then gp()end		
-if GP == 2 then 
-    local prompt = gg.prompt(
-            {
-                "🔢 Enter the ticket ID you want to copy from:",
-                "🔢 Enter the correct ticket ID:"
-            },
-            nil,
-            { "number", "number" }
-        )
-        if prompt then
-            changeTicket(prompt[1], prompt[2])
-        end 
-end
-if GP == 3 then resetTickets() end
-if GP == 4 then showTicket() end
-if GP == 5 then currentTicket() end
-if GP == 6 then showTicketInfo() end
-if GP == 7 then Menu_Option(100006) end
-
-elseif menu_tipo == 200002 then
-    local EXP = gg.choice({
-        "📖 Pre-use guide",
-        "✅️ COMPLETE EVENT AND GET TITLE",
-        "⏩️ SWAP EVENT",
-        "🔄 RESET EVENT",
-        "⬅️ BACK"
-    }, nil, 
-[==[
-╔══════════════════════╗
-        	    🎫 GOLDEN PASS MENU 🎫
-╚══════════════════════╝
-]==])
-    
-    if EXP == 1 then
-        local msg = "📖 Pre-use guide\n\n"
-        msg = msg .. "Use the correct ID when swapping events.\n\n"
-        msg = msg .. "📋 Event list for update 39.0.1\n\n"
-
-        local sortedEvents = { eve_searchs["Event 54"], eve_searchs["Event 55"], eve_searchs["Event 56"] }
-
-        for _, v in ipairs(sortedEvents) do
-            msg = msg .. "• " .. v.name .. "\n"
-            msg = msg .. "ID : " .. v.id .. "\n\n"
-        end
-
-        gg.alert(msg)
-        Menu_Option(200002)
-    elseif EXP == 2 then
-        finishEventMenu()
-    elseif EXP == 3 then
-        local input = gg.prompt(
-            {
-                "What is the current event in your city (ID):",
-                "What is the event you want to switch to (ID):"
-            },
-            { "", "" },
-            { "number", "number" }
-        )
-
-        if input then
-            changeEvent(tonumber(input[1]), tonumber(input[2]))
-        else
-            Menu_Option(200002)
-        end
-    elseif EXP == 4 then
-        restartEvent()
-    elseif EXP == 5 then
-        Menu_Option(100006)
-    end
-
-elseif menu_tipo == 100006 then
+  elseif menu_tipo == 100006 then
 	if not USER_LOADED then
         Load_User_Info()
         USER_LOADED = true
     end
     local opcao = gg.choice({
-        "🗝️ UNLOCK GOLDEN PASS 🗝️",
-        "🎫 GOLDEN PASS MENU 🎫",
+        "🗝️ GOLDEN PASS 🗝️",
         "❄️ CHANGE STAGE REWARD ❄️",
         "🎁 CHANGE REWARDS 🎁",
-        "🗺️ EXPEDITION MENU🗺️",
         "⭐ SPECIAL FEATURE ⭐",
         "🏭 FACTORY AND MARKET 🏭",
         "🏙️ CITY HACK 🏙️",
@@ -6389,24 +6298,12 @@ elseif menu_tipo == 100006 then
     if opcao == 1 then
         Gold_Pass()
     elseif opcao == 2 then
-        CheckAccess(
-        "https://raw.githubusercontent.com/oiim10/IIM/refs/heads/main/PF_GOLDENPASS",
-        function()
-            Menu_Option(200001)
-        end
-        )
-    elseif opcao == 3 then
         Freeze_Reward()
-    elseif opcao == 4 then
+    elseif opcao == 3 then
         Menu_Option(1)
+    elseif opcao == 4 then
+	    Menu_Option(20000)
     elseif opcao == 5 then
-	    CheckAccess(
-        "https://raw.githubusercontent.com/oiim10/IIM/refs/heads/main/PF_EXPEDITION",
-        function()
-            Menu_Option(200002)
-        end
-        )
-    elseif opcao == 6 then
 	gg.alert([[
 	⚠️TIPS FACTORY AND MARKET ⚠️	
 	📋CHANGE QUANTITY 
@@ -6417,13 +6314,13 @@ elseif menu_tipo == 100006 then
 	   Masukkan Harga Kotak Pabrik ➞ Keluar Masuk Pabrik agar harganya jadi 0
 	]]) 
         Menu_Option(100000)
-    elseif opcao == 7 then
+    elseif opcao == 6 then
         Menu_Option(100002)
-    elseif opcao == 8 then
+    elseif opcao == 7 then
         Menu_Option(100001)
-    elseif opcao == 9 then
+    elseif opcao == 8 then
         Menu_Option(100005)
-    elseif opcao == 10 then
+    elseif opcao == 9 then
         Main_Menu()
     end
 
@@ -49230,463 +49127,6 @@ function Unlock_Artifact()
     end
 end
 
-function finishEventMenu()
-    local choice = gg.choice({ "Complete Part 1🌟", "Complete Part 2🌟", "⬅️ Back" }, nil, "Event Completion Menu")
-
-    if choice == 1 then
-        performFinish(1)
-    elseif choice == 2 then
-        performFinish(-1)
-    elseif choice == 3 then
-        Menu_Option(200002)
-    end
-end
-
-function performFinish(val)
-    if not cachedResults or #cachedResults == 0 then
-        gg.clearResults()
-        gg.searchNumber("1886930200;1953064037;256::121", gg.TYPE_DWORD, false, gg.SIGN_EQUAL, 0, -1)
-        gg.refineNumber("256", gg.TYPE_DWORD, false, gg.SIGN_EQUAL, 0, -1)
-        cachedResults = gg.getResults(100)
-    end
-
-    if cachedResults and #cachedResults > 0 then
-        local edits = {}
-
-        for i, v in ipairs(cachedResults) do
-            local addr1 = v.address + 0xC
-            local addr2 = v.address + 0xC - 4
-
-            local val1 = gg.getValues({ { address = addr1, flags = gg.TYPE_DWORD } })[1].value
-            local val2 = gg.getValues({ { address = addr2, flags = gg.TYPE_DWORD } })[1].value
-
-            if val1 == 0 then
-                table.insert(edits, { address = addr1, value = val, flags = gg.TYPE_DWORD })
-            end
-
-            if val2 == 0 then
-                table.insert(edits, { address = addr2, value = val, flags = gg.TYPE_DWORD })
-            end
-        end
-
-        if #edits > 0 then
-            gg.setValues(edits)
-            if val == 1 then
-                gg.alert("Part 1 completed successfully")
-            else
-                gg.alert("Part 2 completed successfully")
-            end
-        else
-            gg.alert("Error completing event ⚠️")
-        end
-    else
-        gg.alert("No results found")
-        cachedResults = nil
-    end
-end
-
-function changeEvent(currentId, targetId)
-    local currentEv = eve_searchs["Event " .. currentId]
-    local targetEv = eve_searchs["Event " .. targetId]
-
-    if not currentEv or not targetEv then
-        gg.alert("Event not found in table, check the ID in the guide 📖")
-        return
-    end
-
-    gg.clearResults()
-    gg.searchNumber(currentEv["code"][1], gg.TYPE_DWORD, false, gg.SIGN_EQUAL, 0, -1)
-    gg.refineNumber(currentEv["refine"][1], gg.TYPE_DWORD, false, gg.SIGN_EQUAL, 0, -1)
-
-    local res1 = gg.getResults(1000)
-    for i, v in ipairs(res1) do
-        v.value = 0
-    end
-    gg.setValues(res1)
-
-    gg.clearResults()
-    gg.searchNumber(targetEv["code"][2], gg.TYPE_DWORD, false, gg.SIGN_EQUAL, 0, -1)
-    gg.refineNumber(targetEv["refine"][2], gg.TYPE_DWORD, false, gg.SIGN_EQUAL, 0, -1)
-
-    local res2 = gg.getResults(1)
-    if #res2 > 0 then
-        res2[1].value = 1782464400
-        gg.setValues(res2)
-    end
-    gg.clearResults()
-    gg.toast("Event swapped successfully ✅️")
-    gg.setVisible(false)
-end
-
-function restartEvent()
-    gg.clearResults()
-    gg.searchNumber("1886930212;1953064037;1601073001;808465971~808466227;3159391~3355999::19", gg.TYPE_DWORD, false, gg.SIGN_EQUAL, 0, -1)
-
-    local results = gg.getResults(1000)
-    if #results > 0 then
-        local edits = {}
-        for i, v in ipairs(results) do
-            table.insert(edits, { address = v.address, value = 0, flags = gg.TYPE_DWORD })
-        end
-        gg.setValues(edits)
-        gg.toast("Event reset successfully ✅")
-    else
-        gg.alert("No results found to reset")
-    end
-    gg.clearResults()
-end
-
-local tickets_id = {
-    { name = "Harvest Ticket", id = 800 },
-    { name = "Western Permit", id = 810 },
-    { name = "Halloween Permit", id = 820 }
-}
-
--- =====================================================
--- RESET TICKETS
--- =====================================================
-local cachedResetTicketsResults = nil
-
-function resetTickets()
-    if cachedResetTicketsResults == nil then
-        gg.clearResults()
-        gg.searchNumber("1634038552;1937011470;700~10000::121", 4)
-        gg.refineNumber("700~10000", 4)
-
-        local count = gg.getResultCount()
-        if count == 0 then
-            gg.alert("❌ No data found.\n\nSet memory ranges then restart the game.")
-            gg.setVisible(true)
-            return
-        end
-        cachedResetTicketsResults = gg.getResults(count)
-    end
-
-    local uniqueValues = {}
-    local menuOptions = {}
-    local valueToAddressMap = {}
-
-    for _, result in ipairs(cachedResetTicketsResults) do
-        local value = tonumber(result.value)
-        if value and not uniqueValues[value] then
-            uniqueValues[value] = true
-            valueToAddressMap[value] = result.address
-            table.insert(menuOptions, "🎫 Ticket number: " .. value)
-        end
-    end
-
-    if #menuOptions == 0 then
-        gg.alert("❌ No matching tickets found.")
-        return
-    end
-
-    local choices = gg.multiChoice(menuOptions, nil, "🎯 Select the permit number to reset its time:")
-    if not choices then return end
-
-    local ticketsTable = {
-        [780] = { startTime = 1785488400, endTime = 1787302800 },
-        [790] = { startTime = 1787302800, endTime = 1789117200 },
-        [800] = { startTime = 1789117200, endTime = 1790931600 },
-        [810] = { startTime = 1790931600, endTime = 1792746000 },
-        [820] = { startTime = 1792746000, endTime = 1794560400 }
-    }
-
-    local editList = {}
-    local selectedCount = 0
-    local skippedCount = 0
-
-    for index, selected in pairs(choices) do
-        if selected then
-            local optionText = menuOptions[index]
-            local ticketNum = tonumber(optionText:match("%d+"))
-            local baseAddress = valueToAddressMap[ticketNum]
-            local ticketData = ticketsTable[ticketNum]
-
-            if baseAddress and ticketData then
-                table.insert(editList, { address = baseAddress + 16, value = 0, flags = gg.TYPE_DWORD })
-                table.insert(editList, { address = baseAddress + 20, value = ticketData.startTime, flags = gg.TYPE_DWORD })
-                table.insert(editList, { address = baseAddress + 24, value = 0, flags = gg.TYPE_DWORD })
-                table.insert(editList, { address = baseAddress + 28, value = ticketData.endTime, flags = gg.TYPE_DWORD })
-                selectedCount = selectedCount + 1
-            else
-                skippedCount = skippedCount + 1
-            end
-        end
-    end
-
-    if #editList == 0 then
-        gg.alert("❌ No valid data found for the selected tickets.")
-        return
-    end
-
-    gg.setValues(editList)
-    gg.clearResults()
-
-    if skippedCount > 0 then
-        gg.alert("✅ Reset " .. selectedCount .. " permits.\n\n⚠️ Skipped " .. skippedCount .. " permits due to missing matching data.")
-    else
-        gg.alert("✅ Reset time for " .. selectedCount .. " permits successfully.")
-    end
-end
-
--- =====================================================
--- CURRENT TICKET
--- =====================================================
-function currentTicket()
-    gg.clearResults()
-    gg.searchNumber("1634038552;1937011470;700~10000::121", 4)
-    gg.refineNumber("700~10000", 4)
-
-    local count = gg.getResultCount()
-    if count == 0 then
-        gg.alert("❌ No results found\n\n📌 Set memory ranges,\nor make sure the permit exists in the city.")
-        gg.setVisible(true)
-        return
-    end
-
-    local results = gg.getResults(count)
-    local counts = {}
-    local maxCount = 0
-    local mostFrequentVal = results[1].value
-
-    for _, r in ipairs(results) do
-        local val = r.value
-        counts[val] = (counts[val] or 0) + 1
-        if counts[val] > maxCount then
-            maxCount = counts[val]
-            mostFrequentVal = val
-        end
-    end
-
-    gg.alert(
-        "🎫 Current Permit\n\n" ..
-        "━━━━━━━━━━━━━━━━\n" ..
-        "🔢 Permit number:  " .. mostFrequentVal .. "\n" ..
-        "━━━━━━━━━━━━━━━━\n\n" ..
-        "📌 Please review the permit guidelines\n" ..
-        "to confirm the current number is updated."
-    )
-
-    gg.clearResults()
-end
-
--- =====================================================
--- SHOW HIDDEN TICKET
--- =====================================================
-function showTicket()
-    gg.clearResults()
-    gg.searchNumber("1937011470;1701998435;700~10000;1634030360::161", 4)
-    gg.refineNumber("700~10000", 4)
-
-    local count = gg.getResultCount()
-    if count == 0 then
-        gg.alert("❌ No results found ❌\n\n📌 Set memory ranges,\nor send a screenshot to script developers for help.")
-        gg.setVisible(true)
-        return
-    end
-
-    local results = gg.getResults(count)
-    local editList = {}
-
-    for _, r in ipairs(results) do
-        local baseAddress = r.address
-        local vals = gg.getValues({
-            { address = baseAddress + 16, flags = 4 },
-            { address = baseAddress + 20, flags = 4 }
-        })
-
-        if vals and vals[1] and vals[2] then
-            table.insert(editList, { address = baseAddress + 8,  value = vals[1].value, flags = 4 })
-            table.insert(editList, { address = baseAddress + 12, value = vals[2].value, flags = 4 })
-        end
-    end
-
-    if #editList > 0 then
-        gg.setValues(editList)
-        gg.alert("✅ Edited successfully ✅\n\n🔄 Close the game and restart it\nto see the changes.")
-    else
-        gg.alert("❌ No results found ❌\n\n📌 Set memory ranges,\nor send a screenshot to script developers for help.")
-        gg.setVisible(true)
-    end
-
-    gg.clearResults()
-end
-
--- =====================================================
--- UNLOCK GOLD TICKET
--- =====================================================
-function gp()
-    gg.setVisible(false)
-    gg.clearResults()
-    gg.searchNumber("1634038552;1937011470;700~10000::121", gg.TYPE_DWORD, false, gg.SIGN_EQUAL, 0, -1)
-    gg.refineNumber("700~10000", gg.TYPE_DWORD, false, gg.SIGN_EQUAL, 0, -1)
-
-    local results = gg.getResults(100)
-    local count = #results
-
-    if count == 0 then
-        gg.alert("No results found for tickets!")
-        return
-    end
-
-    local modifications = {}
-    for i = 1, count do
-        local baseAddress = results[i].address
-        table.insert(modifications, { address = baseAddress + 0xD0,         value = 0,   flags = gg.TYPE_DWORD })
-        table.insert(modifications, { address = baseAddress + 0xD0 + 4,     value = 700, flags = gg.TYPE_DWORD })
-        table.insert(modifications, { address = baseAddress + 0xD0 + 16,    value = 1,   flags = gg.TYPE_DWORD })
-    end
-
-    gg.setValues(modifications)
-    gg.toast("✅ Golden Ticket activated!")
-    gg.alert("✅ Gold Pass Unlocked Successfully!\nRestart the game to see changes.")
-    gg.setVisible(false)
-    gg.clearResults()
-end
-
--- =====================================================
--- GET TICKET ID
--- =====================================================
-function getTicketID(input)
-    local num = tonumber(input)
-    if num then return num end
-    for _, t in ipairs(tickets_id) do
-        if t.name == input then return t.id end
-    end
-    return nil
-end
-
--- =====================================================
--- CHANGE TICKET
--- =====================================================
-function changeTicket(srcInput, destInput)
-    local idSrc  = getTicketID(srcInput)
-    local idDest = getTicketID(destInput)
-
-    if not idSrc or not idDest then
-        gg.alert("Please verify the ticket IDs are correct 🚀")
-        return
-    end
-
-    gg.toast("Searching for tickets......")
-    gg.clearResults()
-    gg.searchNumber("1634038552;1937011470;700~10000::121", gg.TYPE_DWORD, false, gg.SIGN_EQUAL, 0, -1)
-    gg.refineNumber("700~10000", gg.TYPE_DWORD, false, gg.SIGN_EQUAL, 0, -1)
-
-    local results = gg.getResults(100)
-    local srcAddress = nil
-    local destAddresses = {}
-
-    for _, r in ipairs(results) do
-        if r.value == idSrc and srcAddress == nil then
-            srcAddress = r.address
-        end
-        if r.value == idDest then
-            table.insert(destAddresses, r.address)
-        end
-    end
-
-    if not srcAddress or #destAddresses == 0 then
-        gg.alert("Could not find the requested tickets\nPlease make sure the tickets exist in the game 💎")
-        return
-    end
-
-    local sourceValues = {}
-    for i = 0, 255 do
-        sourceValues[i + 1] = { address = srcAddress - 0x1E8 + (i * 4), flags = gg.TYPE_DWORD }
-    end
-
-    local data = gg.getValues(sourceValues)
-
-    local allTargetValues = {}
-    for _, dAddr in ipairs(destAddresses) do
-        for i = 0, 255 do
-            table.insert(allTargetValues, {
-                address = dAddr - 0x1E8 + (i * 4),
-                flags   = gg.TYPE_DWORD,
-                value   = data[i + 1].value
-            })
-        end
-    end
-
-    gg.setValues(allTargetValues)
-    gg.clearResults()
-    gg.alert("🗼 Tickets copied successfully!\n\n🔄 All tickets have been changed to the same values\nYou can now use tickets anywhere.\n\n⚠️ Make sure to save progress before exiting.")
-    gg.setVisible(false)
-end
-
--- =====================================================
--- SHOW TICKET INFO
--- =====================================================
-function showTicketInfo()
-    local msg = "🎉 Available tickets in the game 39.0.1\n\n"
-    for _, ticket in ipairs(tickets_id) do
-        msg = msg .. "🎟️ " .. ticket.name .. "    |    ID: " .. ticket.id .. "\n"
-    end
-    gg.alert(msg)
-    gp1()
-end
-
--- =====================================================
--- INDUSTRY ACADEMY
--- =====================================================
-function other1()
-    gg.setVisible(false)
-    gg.clearResults()
-
-    local patterns = {
-        '32162031X4','32162030X4','32162025X4','32162024X4','32162027X4',
-        '32162026X4','32162021X4','32162020X4','32162023X4','32162022X4',
-        '32162017X4','32162016X4','32162019X4','32162018X4','32162045X4',
-        '32162044X4','32162047X4','32162046X4','32162041X4','32162040X4',
-        '32162043X4','32162042X4','32162037X4','32162036X4','32162039X4',
-        '32162038X4','32162033X4','32162032X4','32162035X4','32162034X4',
-        '32161997X4','32161996X4','32161999X4','32161998X4','32161993X4',
-        '32161992X4','32161995X4','32161994X4','32161989X4','32161988X4',
-        '32161991X4','32161990X4','32161987X4','32161986X4','32161983X4',
-        '32161982X4','32161985X4','32161984X4','32161981X4','32161980X4',
-        '32161979X4','32161978X4'
-    }
-
-    gg.alert("🌟 Select the star level in the industry")
-
-    local p = gg.prompt(
-        { "🔢 Enter star level number [2–53]:", "🕑 Cooldown value [50;100]" },
-        { nil, nil },
-        { "number", "number" }
-    )
-    if not p then return end
-
-    local idx = tonumber(p[1])
-    local val = tonumber(p[2])
-
-    if not idx or idx < 2 or idx > 53 then
-        gg.alert("🚫 Invalid star level (must be 2–53)")
-        return
-    end
-    if not val or val < 50 or val > 100 then
-        gg.alert("❌ Invalid star value (must be 99 or 100).")
-        return
-    end
-
-    local pattern = patterns[idx - 1]
-
-    gg.clearResults()
-    gg.searchNumber(pattern, gg.TYPE_DWORD)
-    local res = gg.getResults(100)
-    if #res == 0 then
-        gg.toast("❌ Pattern not found: " .. pattern)
-        return
-    end
-
-    local patch = {}
-    for _, r in ipairs(res) do
-        table.insert(patch, { address = r.address + 0x14, flags = gg.TYPE_DWORD, value = 0 })
-        table.insert(patch, { address = r.address + 0x18, flags = gg.TYPE_DWORD, value = val })
-    end
-    gg.setValues(patch)
-    gg.toast("✅ Pattern successfully set: " .. pattern .. " → " .. val)
-end
 --================================
 -- FREEZE AND CHANGE STAGE REWARD
 --================================
@@ -50728,8 +50168,6 @@ local URLS = {
     ["Unlock Artifact"] = "https://raw.githubusercontent.com/oiim10/IIM/refs/heads/main/PF_ARTIFACT",
     Card             = "https://raw.githubusercontent.com/oiim10/IIM/refs/heads/main/PF_CARD",
     Regatta          = "https://raw.githubusercontent.com/oiim10/IIM/refs/heads/main/REGATA",
-    Expedition       = "https://raw.githubusercontent.com/oiim10/IIM/refs/heads/main/PF_EXPEDITION",
-    ["Golden Pass"]  = "https://raw.githubusercontent.com/oiim10/IIM/refs/heads/main/PF_GOLDENPASS",
 }
 
 local function checkNameInFile(device, url)
@@ -50759,9 +50197,7 @@ local function getAccessInfo(device)
         {"Unlock Animal", "🐾"},
         {"Unlock Artifact", "🏺"},
         {"Card", "🃏"},
-        {"Regatta", "⛵"},
-        {"Expedition", "🗺️"},
-        {"Golden Pass", "🎫"}
+        {"Regatta", "⛵"}
     }
 
     local unlocked = 0
