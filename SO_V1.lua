@@ -49386,7 +49386,7 @@ function resetTickets()
         [800] = { startTime = 1789117200, endTime = 1790931600 },
         [810] = { startTime = 1790931600, endTime = 1792746000 },
         [820] = { startTime = 1792746000, endTime = 1794560400 }
-    }uniqueValues
+    }
 
     local editList = {}
     local selectedCount = 0
