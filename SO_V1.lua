@@ -49339,6 +49339,11 @@ function restartEvent()
     gg.clearResults()
 end
 
+local tickets_id = {
+    { name = "Harvest Ticket", id = 800 },
+    { name = "Western Permit", id = 810 },
+    { name = "Halloween Permit", id = 820 }
+}
 -- =====================================================
 -- RESET TICKETS
 -- =====================================================
