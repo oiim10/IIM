@@ -49629,7 +49629,7 @@ function showTicketInfo()
     gp1()
 end
 
-rompt(
+local p = gg.prompt(
         { "🔢 Enter star level number [2–53]:", "🕑 Cooldown value [50;100]" },
         { nil, nil },
         { "number", "number" }
@@ -49644,7 +49644,7 @@ rompt(
         return
     end
     if not val or val < 50 or val > 100 then
-        gg.alert("❌ Invalid star value (must be 99 or 100).")
+        gg.alert("❌ Invalid star value (must be 50 or 100).")
         return
     end
 
