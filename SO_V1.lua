@@ -49344,6 +49344,7 @@ local tickets_id = {
     { name = "Western Permit", id = 810 },
     { name = "Halloween Permit", id = 820 }
 }
+
 -- =====================================================
 -- RESET TICKETS
 -- =====================================================
@@ -49364,7 +49365,7 @@ function resetTickets()
         cachedResetTicketsResults = gg.getResults(count)
     end
 
-    local uniqueValues = {}
+    local  = {}
     local menuOptions = {}
     local valueToAddressMap = {}
 
@@ -49391,7 +49392,7 @@ function resetTickets()
         [800] = { startTime = 1789117200, endTime = 1790931600 },
         [810] = { startTime = 1790931600, endTime = 1792746000 },
         [820] = { startTime = 1792746000, endTime = 1794560400 }
-    }
+    }uniqueValues
 
     local editList = {}
     local selectedCount = 0
@@ -49629,6 +49630,9 @@ function showTicketInfo()
     gp1()
 end
 
+-- =====================================================
+-- INDUSTRY ACADEMY
+-- =====================================================
 function other1()
     gg.setVisible(false)
     gg.clearResults()
