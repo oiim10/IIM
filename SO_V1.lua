@@ -49359,7 +49359,7 @@ function resetTickets()
         cachedResetTicketsResults = gg.getResults(count)
     end
 
-    local  = {}
+    local uniqueValues = {}
     local menuOptions = {}
     local valueToAddressMap = {}
 
