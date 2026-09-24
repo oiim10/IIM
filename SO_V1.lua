@@ -6340,11 +6340,9 @@ elseif menu_tipo == 200002 then
 
         gg.alert(msg)
         Menu_Option(200002)
-end
-    if EXP == 2 then
+    elseif EXP == 2 then
         finishEventMenu()
-end
-    if EXP == 3 then
+    elseif EXP == 3 then
         local input = gg.prompt(
             {
                 "What is the current event in your city (ID):",
@@ -6359,10 +6357,9 @@ end
         else
             Menu_Option(200002)
         end
-end
-    if EXP == 4 then
-        restartEvent() end
-    if choice == 5 then
+    elseif EXP == 4 then
+        restartEvent()
+    elseif EXP == 5 then
         Menu_Option(100006)
     end
 
