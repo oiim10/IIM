@@ -50739,9 +50739,9 @@ local function getAccessInfo(device)
         {"Unlock Animal", "🐾"},
         {"Unlock Artifact", "🏺"},
         {"Card", "🃏"},
-        {"Regatta", "⛵"}
+        {"Regatta", "⛵"},
         {"Expedition", "🗺️"},
-        {"Golden Pass", "🎫"},
+        {"Golden Pass", "🎫"}
     }
 
     local unlocked = 0
