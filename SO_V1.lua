@@ -30,9 +30,9 @@ Detected package:
 end
 gg.alert(
         "📢 NEW UPDATE\n" ..
-        "🤠 WildWest Pass and 🎃Halloween Pass has been added\n" ..
-	    "🎭 6 Skin Pass has been added\n" ..
-	    "🔍 Check on Golden Pass and Skins Menu"
+        "🔄 FEATURE CHANGE PASS AND 🗺️EXPEDITION\n" ..
+	    "🏭 ACADEMY INDUSTRY\n" ..
+	    "🔍 SEKARANG KAMU BISA MENGGANTI SUPER PASS MENJADI GOLDEN TICKET DAN MENYELESAIKAN EVENT EXPEDITION HANYA SEKALI KLIK"
 )
 local pilih = gg.alert([[
 📖 CARA MENGGUNAKAN SCRIPT
