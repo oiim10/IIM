@@ -6407,6 +6407,8 @@ elseif menu_tipo == 100006 then
         end
         )
     elseif opcao == 6 then
+        Menu_Option(20000)
+    elseif opcao == 7 then
 	gg.alert([[
 	⚠️TIPS FACTORY AND MARKET ⚠️	
 	📋CHANGE QUANTITY 
@@ -6417,13 +6419,13 @@ elseif menu_tipo == 100006 then
 	   Masukkan Harga Kotak Pabrik ➞ Keluar Masuk Pabrik agar harganya jadi 0
 	]]) 
         Menu_Option(100000)
-    elseif opcao == 7 then
-        Menu_Option(100002)
     elseif opcao == 8 then
-        Menu_Option(100001)
+        Menu_Option(100002)
     elseif opcao == 9 then
-        Menu_Option(100005)
+        Menu_Option(100001)
     elseif opcao == 10 then
+        Menu_Option(100005)
+    elseif opcao == 11 then
         Main_Menu()
     end
 
