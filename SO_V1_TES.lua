@@ -49437,6 +49437,300 @@ function other1()
     gg.setValues(patch)
     gg.toast("✅ Pattern successfully set: " .. pattern .. " → " .. val)
 end
+
+-- =====================================================
+-- TICKET ID TABLE
+-- =====================================================
+local tickets_id = {
+    { name = "Harvest Ticket", id = 800 },
+    { name = "Western Permit", id = 810 },
+    { name = "Halloween Permit", id = 820 }
+}
+
+-- =====================================================
+-- RESET TICKETS
+-- =====================================================
+local cachedResetTicketsResults = nil
+
+function resetTickets()
+    if cachedResetTicketsResults == nil then
+        gg.clearResults()
+        gg.searchNumber("1634038552;1937011470;700~10000::121", 4)
+        gg.refineNumber("700~10000", 4)
+
+        local count = gg.getResultCount()
+        if count == 0 then
+            gg.alert("❌ No data found.\n\nSet memory ranges then restart the game.")
+            gg.setVisible(true)
+            return
+        end
+        cachedResetTicketsResults = gg.getResults(count)
+    end
+
+    local uniqueValues = {}
+    local menuOptions = {}
+    local valueToAddressMap = {}
+
+    for _, result in ipairs(cachedResetTicketsResults) do
+        local value = tonumber(result.value)
+        if value and not uniqueValues[value] then
+            uniqueValues[value] = true
+            valueToAddressMap[value] = result.address
+            table.insert(menuOptions, "🎫 Ticket number: " .. value)
+        end
+    end
+
+    if #menuOptions == 0 then
+        gg.alert("❌ No matching tickets found.")
+        return
+    end
+
+    local choices = gg.multiChoice(menuOptions, nil, "🎯 Select the permit number to reset its time:")
+    if not choices then return end
+
+    local ticketsTable = {
+        [780] = { startTime = 1785488400, endTime = 1787302800 },
+        [790] = { startTime = 1787302800, endTime = 1789117200 },
+        [800] = { startTime = 1789117200, endTime = 1790931600 },
+        [810] = { startTime = 1790931600, endTime = 1792746000 },
+        [820] = { startTime = 1792746000, endTime = 1794560400 }
+    }
+
+    local editList = {}
+    local selectedCount = 0
+    local skippedCount = 0
+
+    for index, selected in pairs(choices) do
+        if selected then
+            local optionText = menuOptions[index]
+            local ticketNum = tonumber(optionText:match("%d+"))
+            local baseAddress = valueToAddressMap[ticketNum]
+            local ticketData = ticketsTable[ticketNum]
+
+            if baseAddress and ticketData then
+                table.insert(editList, { address = baseAddress + 16, value = 0, flags = gg.TYPE_DWORD })
+                table.insert(editList, { address = baseAddress + 20, value = ticketData.startTime, flags = gg.TYPE_DWORD })
+                table.insert(editList, { address = baseAddress + 24, value = 0, flags = gg.TYPE_DWORD })
+                table.insert(editList, { address = baseAddress + 28, value = ticketData.endTime, flags = gg.TYPE_DWORD })
+                selectedCount = selectedCount + 1
+            else
+                skippedCount = skippedCount + 1
+            end
+        end
+    end
+
+    if #editList == 0 then
+        gg.alert("❌ No valid data found for the selected tickets.")
+        return
+    end
+
+    gg.setValues(editList)
+    gg.clearResults()
+
+    if skippedCount > 0 then
+        gg.alert("✅ Reset " .. selectedCount .. " permits.\n\n⚠️ Skipped " .. skippedCount .. " permits due to missing matching data.")
+    else
+        gg.alert("✅ Reset time for " .. selectedCount .. " permits successfully.")
+    end
+end
+
+-- =====================================================
+-- CURRENT TICKET
+-- =====================================================
+function currentTicket()
+    gg.clearResults()
+    gg.searchNumber("1634038552;1937011470;700~10000::121", 4)
+    gg.refineNumber("700~10000", 4)
+
+    local count = gg.getResultCount()
+    if count == 0 then
+        gg.alert("❌ No results found\n\n📌 Set memory ranges,\nor make sure the permit exists in the city.")
+        gg.setVisible(true)
+        return
+    end
+
+    local results = gg.getResults(count)
+    local counts = {}
+    local maxCount = 0
+    local mostFrequentVal = results[1].value
+
+    for _, r in ipairs(results) do
+        local val = r.value
+        counts[val] = (counts[val] or 0) + 1
+        if counts[val] > maxCount then
+            maxCount = counts[val]
+            mostFrequentVal = val
+        end
+    end
+
+    gg.alert(
+        "🎫 Current Permit\n\n" ..
+        "━━━━━━━━━━━━━━━━\n" ..
+        "🔢 Permit number:  " .. mostFrequentVal .. "\n" ..
+        "━━━━━━━━━━━━━━━━\n\n" ..
+        "📌 Please review the permit guidelines\n" ..
+        "to confirm the current number is updated."
+    )
+
+    gg.clearResults()
+end
+
+-- =====================================================
+-- SHOW HIDDEN TICKET
+-- =====================================================
+function showTicket()
+    gg.clearResults()
+    gg.searchNumber("1937011470;1701998435;700~10000;1634030360::161", 4)
+    gg.refineNumber("700~10000", 4)
+
+    local count = gg.getResultCount()
+    if count == 0 then
+        gg.alert("❌ No results found ❌\n\n📌 Set memory ranges,\nor send a screenshot to script developers for help.")
+        gg.setVisible(true)
+        return
+    end
+
+    local results = gg.getResults(count)
+    local editList = {}
+
+    for _, r in ipairs(results) do
+        local baseAddress = r.address
+        local vals = gg.getValues({
+            { address = baseAddress + 16, flags = 4 },
+            { address = baseAddress + 20, flags = 4 }
+        })
+
+        if vals and vals[1] and vals[2] then
+            table.insert(editList, { address = baseAddress + 8,  value = vals[1].value, flags = 4 })
+            table.insert(editList, { address = baseAddress + 12, value = vals[2].value, flags = 4 })
+        end
+    end
+
+    if #editList > 0 then
+        gg.setValues(editList)
+        gg.alert("✅ Edited successfully ✅\n\n🔄 Close the game and restart it\nto see the changes.")
+    else
+        gg.alert("❌ No results found ❌\n\n📌 Set memory ranges,\nor send a screenshot to script developers for help.")
+        gg.setVisible(true)
+    end
+
+    gg.clearResults()
+end
+
+-- =====================================================
+-- UNLOCK GOLD TICKET
+-- =====================================================
+function gp()
+    gg.setVisible(false)
+    gg.clearResults()
+    gg.searchNumber("1634038552;1937011470;700~10000::121", gg.TYPE_DWORD, false, gg.SIGN_EQUAL, 0, -1)
+    gg.refineNumber("700~10000", gg.TYPE_DWORD, false, gg.SIGN_EQUAL, 0, -1)
+
+    local results = gg.getResults(100)
+    local count = #results
+
+    if count == 0 then
+        gg.alert("No results found for tickets!")
+        return
+    end
+
+    local modifications = {}
+    for i = 1, count do
+        local baseAddress = results[i].address
+        table.insert(modifications, { address = baseAddress + 0xD0,         value = 0,   flags = gg.TYPE_DWORD })
+        table.insert(modifications, { address = baseAddress + 0xD0 + 4,     value = 700, flags = gg.TYPE_DWORD })
+        table.insert(modifications, { address = baseAddress + 0xD0 + 16,    value = 1,   flags = gg.TYPE_DWORD })
+    end
+
+    gg.setValues(modifications)
+    gg.toast("✅ Golden Ticket activated!")
+    gg.alert("✅ Gold Pass Unlocked Successfully!\nRestart the game to see changes.")
+    gg.setVisible(false)
+    gg.clearResults()
+end
+
+-- =====================================================
+-- GET TICKET ID
+-- =====================================================
+function getTicketID(input)
+    local num = tonumber(input)
+    if num then return num end
+    for _, t in ipairs(tickets_id) do
+        if t.name == input then return t.id end
+    end
+    return nil
+end
+
+-- =====================================================
+-- CHANGE TICKET
+-- =====================================================
+function changeTicket(srcInput, destInput)
+    local idSrc  = getTicketID(srcInput)
+    local idDest = getTicketID(destInput)
+
+    if not idSrc or not idDest then
+        gg.alert("Please verify the ticket IDs are correct 🚀")
+        return
+    end
+
+    gg.toast("Searching for tickets......")
+    gg.clearResults()
+    gg.searchNumber("1634038552;1937011470;700~10000::121", gg.TYPE_DWORD, false, gg.SIGN_EQUAL, 0, -1)
+    gg.refineNumber("700~10000", gg.TYPE_DWORD, false, gg.SIGN_EQUAL, 0, -1)
+
+    local results = gg.getResults(100)
+    local srcAddress = nil
+    local destAddresses = {}
+
+    for _, r in ipairs(results) do
+        if r.value == idSrc and srcAddress == nil then
+            srcAddress = r.address
+        end
+        if r.value == idDest then
+            table.insert(destAddresses, r.address)
+        end
+    end
+
+    if not srcAddress or #destAddresses == 0 then
+        gg.alert("Could not find the requested tickets\nPlease make sure the tickets exist in the game 💎")
+        return
+    end
+
+    local sourceValues = {}
+    for i = 0, 255 do
+        sourceValues[i + 1] = { address = srcAddress - 0x1E8 + (i * 4), flags = gg.TYPE_DWORD }
+    end
+
+    local data = gg.getValues(sourceValues)
+
+    local allTargetValues = {}
+    for _, dAddr in ipairs(destAddresses) do
+        for i = 0, 255 do
+            table.insert(allTargetValues, {
+                address = dAddr - 0x1E8 + (i * 4),
+                flags   = gg.TYPE_DWORD,
+                value   = data[i + 1].value
+            })
+        end
+    end
+
+    gg.setValues(allTargetValues)
+    gg.clearResults()
+    gg.alert("🗼 Tickets copied successfully!\n\n🔄 All tickets have been changed to the same values\nYou can now use tickets anywhere.\n\n⚠️ Make sure to save progress before exiting.")
+    gg.setVisible(false)
+end
+
+-- =====================================================
+-- SHOW TICKET INFO
+-- =====================================================
+function showTicketInfo()
+    local msg = "🎉 Available tickets in the game 39.0.1\n\n"
+    for _, ticket in ipairs(tickets_id) do
+        msg = msg .. "🎟️ " .. ticket.name .. "    |    ID: " .. ticket.id .. "\n"
+    end
+    gg.alert(msg)
+    gp1()
+end
 --================================
 -- FREEZE AND CHANGE STAGE REWARD
 --================================
