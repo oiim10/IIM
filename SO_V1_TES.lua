@@ -49230,6 +49230,213 @@ function Unlock_Artifact()
     end
 end
 
+local eve_searchs = {
+    ["Event 54"] = {
+        name = "Doom Island",
+        code = {
+            [1] = "65537;1886930212;1953064037;1601073001;808466483;3421535::188",
+            [2] = "1886930212;1953064037;1601073001;808466483;3421535;1787302800;1789117200::49"
+        },
+        refine = {
+            [1] = "1886930212;1953064037;1601073001;808466483;3421535",
+            [2] = "1787302800;1789117200"
+        },
+        id = 54
+    },
+
+    ["Event 55"] = {
+        name = "Guest from Space",
+        code = {
+            [1] = "65537;1886930212;1953064037;1601073001;808466483;3487071::188",
+            [2] = "1886930212;1953064037;1601073001;808466483;3487071;1789117200;1790931600::49"
+        },
+        refine = {
+            [1] = "1886930212;1953064037;1601073001;808466483;3487071",
+            [2] = "1789117200;1790931600"
+        },
+        id = 55
+    },
+
+    ["Event 56"] = {
+        name = "Not Yet Available",
+        code = {
+            [1] = "65537;1886930212;1953064037;1601073001;808466739;3552607::188",
+            [2] = "1886930212;1953064037;1601073001;808466739;3552607;1790931600;1792746000::49"
+        },
+        refine = {
+            [1] = "1886930212;1953064037;1601073001;808466739;3552607",
+            [2] = "1790931600;1792746000"
+        },
+        id = 56
+    }
+}
+
+function finishEventMenu()
+    local choice = gg.choice({ "Complete Part 1🌟", "Complete Part 2🌟", "⬅️ Back" }, nil, "Event Completion Menu")
+
+    if choice == 1 then
+        performFinish(1)
+    elseif choice == 2 then
+        performFinish(-1)
+    elseif choice == 3 then
+        expEventMenu()
+    end
+end
+
+function performFinish(val)
+    if not cachedResults or #cachedResults == 0 then
+        gg.clearResults()
+        gg.searchNumber("1886930200;1953064037;256::121", gg.TYPE_DWORD, false, gg.SIGN_EQUAL, 0, -1)
+        gg.refineNumber("256", gg.TYPE_DWORD, false, gg.SIGN_EQUAL, 0, -1)
+        cachedResults = gg.getResults(100)
+    end
+
+    if cachedResults and #cachedResults > 0 then
+        local edits = {}
+
+        for i, v in ipairs(cachedResults) do
+            local addr1 = v.address + 0xC
+            local addr2 = v.address + 0xC - 4
+
+            local val1 = gg.getValues({ { address = addr1, flags = gg.TYPE_DWORD } })[1].value
+            local val2 = gg.getValues({ { address = addr2, flags = gg.TYPE_DWORD } })[1].value
+
+            if val1 == 0 then
+                table.insert(edits, { address = addr1, value = val, flags = gg.TYPE_DWORD })
+            end
+
+            if val2 == 0 then
+                table.insert(edits, { address = addr2, value = val, flags = gg.TYPE_DWORD })
+            end
+        end
+
+        if #edits > 0 then
+            gg.setValues(edits)
+            if val == 1 then
+                gg.alert("Part 1 completed successfully")
+            else
+                gg.alert("Part 2 completed successfully")
+            end
+        else
+            gg.alert("Error completing event ⚠️")
+        end
+    else
+        gg.alert("No results found")
+        cachedResults = nil
+    end
+end
+
+function changeEvent(currentId, targetId)
+    local currentEv = eve_searchs["Event " .. currentId]
+    local targetEv = eve_searchs["Event " .. targetId]
+
+    if not currentEv or not targetEv then
+        gg.alert("Event not found in table, check the ID in the guide 📖")
+        return
+    end
+
+    gg.clearResults()
+    gg.searchNumber(currentEv["code"][1], gg.TYPE_DWORD, false, gg.SIGN_EQUAL, 0, -1)
+    gg.refineNumber(currentEv["refine"][1], gg.TYPE_DWORD, false, gg.SIGN_EQUAL, 0, -1)
+
+    local res1 = gg.getResults(1000)
+    for i, v in ipairs(res1) do
+        v.value = 0
+    end
+    gg.setValues(res1)
+
+    gg.clearResults()
+    gg.searchNumber(targetEv["code"][2], gg.TYPE_DWORD, false, gg.SIGN_EQUAL, 0, -1)
+    gg.refineNumber(targetEv["refine"][2], gg.TYPE_DWORD, false, gg.SIGN_EQUAL, 0, -1)
+
+    local res2 = gg.getResults(1)
+    if #res2 > 0 then
+        res2[1].value = 1782464400
+        gg.setValues(res2)
+    end
+    gg.clearResults()
+    gg.toast("Event swapped successfully ✅️")
+    gg.setVisible(false)
+end
+
+function restartEvent()
+    gg.clearResults()
+    gg.searchNumber("1886930212;1953064037;1601073001;808465971~808466227;3159391~3355999::19", gg.TYPE_DWORD, false, gg.SIGN_EQUAL, 0, -1)
+
+    local results = gg.getResults(1000)
+    if #results > 0 then
+        local edits = {}
+        for i, v in ipairs(results) do
+            table.insert(edits, { address = v.address, value = 0, flags = gg.TYPE_DWORD })
+        end
+        gg.setValues(edits)
+        gg.toast("Event reset successfully ✅")
+    else
+        gg.alert("No results found to reset")
+    end
+    gg.clearResults()
+end
+
+-- =====================================================
+-- INDUSTRY ACADEMY
+-- =====================================================
+function other1()
+    gg.setVisible(false)
+    gg.clearResults()
+
+    local patterns = {
+        '32162031X4','32162030X4','32162025X4','32162024X4','32162027X4',
+        '32162026X4','32162021X4','32162020X4','32162023X4','32162022X4',
+        '32162017X4','32162016X4','32162019X4','32162018X4','32162045X4',
+        '32162044X4','32162047X4','32162046X4','32162041X4','32162040X4',
+        '32162043X4','32162042X4','32162037X4','32162036X4','32162039X4',
+        '32162038X4','32162033X4','32162032X4','32162035X4','32162034X4',
+        '32161997X4','32161996X4','32161999X4','32161998X4','32161993X4',
+        '32161992X4','32161995X4','32161994X4','32161989X4','32161988X4',
+        '32161991X4','32161990X4','32161987X4','32161986X4','32161983X4',
+        '32161982X4','32161985X4','32161984X4','32161981X4','32161980X4',
+        '32161979X4','32161978X4'
+    }
+
+    gg.alert("🌟 Select the star level in the industry")
+
+    local p = gg.prompt(
+        { "🔢 Enter star level number [2–53]:", "🕑 Cooldown value [50;100]" },
+        { nil, nil },
+        { "number", "number" }
+    )
+    if not p then return end
+
+    local idx = tonumber(p[1])
+    local val = tonumber(p[2])
+
+    if not idx or idx < 2 or idx > 53 then
+        gg.alert("🚫 Invalid star level (must be 2–53)")
+        return
+    end
+    if not val or val < 50 or val > 100 then
+        gg.alert("❌ Invalid star value (must be 50 or 100).")
+        return
+    end
+
+    local pattern = patterns[idx - 1]
+
+    gg.clearResults()
+    gg.searchNumber(pattern, gg.TYPE_DWORD)
+    local res = gg.getResults(100)
+    if #res == 0 then
+        gg.toast("❌ Pattern not found: " .. pattern)
+        return
+    end
+
+    local patch = {}
+    for _, r in ipairs(res) do
+        table.insert(patch, { address = r.address + 0x14, flags = gg.TYPE_DWORD, value = 0 })
+        table.insert(patch, { address = r.address + 0x18, flags = gg.TYPE_DWORD, value = val })
+    end
+    gg.setValues(patch)
+    gg.toast("✅ Pattern successfully set: " .. pattern .. " → " .. val)
+end
 --================================
 -- FREEZE AND CHANGE STAGE REWARD
 --================================
