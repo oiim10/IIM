@@ -3418,8 +3418,8 @@ MXC = gg.choice({
     MAC = gg.choice({
 "🍀 • CLOVERS",
 "☸️ • REGATTA TOKEN",
-"⚓ • FROZEN FORTUNE TOKEN", 
-"🔴 • BLOOMING AND BUZZZING TOKEN",
+"⚓ • FROZEN FORTUNE | DRAGON NEST TOKEN ", 
+"🔴 • BLOOMING AND BUZZZING | TRAIN JOURNEY TOKEN",
 "🔙 • RETURN"
     }, nil,
 [==[
