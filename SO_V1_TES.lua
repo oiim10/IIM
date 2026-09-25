@@ -6158,7 +6158,7 @@ elseif menu_tipo == 100000 then
     if MARKET == 2 then Change_Price_Quantity() end
     if MARKET == 3 then Factory_Market() end
     if MARKET == 4 then Factory_Box() end
-    if MARKET == 5 then other1()
+    if MARKET == 5 then other1()end
     if MARKET == 6 then Menu_Option(100006) end
 
 elseif menu_tipo == 100001 then
@@ -6275,6 +6275,93 @@ if MG == 1 then Unlock_Mayor_Instan() end
 if MG == 2 then Powerball_Event() end
 if MG == 3 then Flip_Card_Stars() end
 if MG == 4 then Menu_Option(100006) end
+
+elseif menu_tipo == 200001 then
+    local GP = gg.choice({
+        "🎫 UNLOCK GOLD TICKET",
+        "🔄 CHANGE TICKET ",
+        "🔄 RESET TICKET",
+        "👻 SHOW HIDDEN TICKET ",
+        "🔎 QUERY CURRENT TICKET",
+        "📝 TICKET INFORMATION",
+        "🔚 BACK"
+    }, nil, 
+[==[
+╔══════════════════════╗
+        	    🎫 GOLDEN PASS MENU 🎫
+╚══════════════════════╝
+]==])
+    
+if GP == 1 then gp()end		
+if GP == 2 then 
+    local prompt = gg.prompt(
+            {
+                "🔢 Enter the ticket ID you want to copy from:",
+                "🔢 Enter the correct ticket ID:"
+            },
+            nil,
+            { "number", "number" }
+        )
+        if prompt then
+            changeTicket(prompt[1], prompt[2])
+        end 
+end
+if GP == 3 then resetTickets() end
+if GP == 4 then showTicket() end
+if GP == 5 then currentTicket() end
+if GP == 6 then showTicketInfo() end
+if GP == 7 then Menu_Option(100006) end
+
+elseif menu_tipo == 200002 then
+    local EXP = gg.choice({
+        "📖 Pre-use guide",
+        "✅️ COMPLETE EVENT AND GET TITLE",
+        "⏩️ SWAP EVENT",
+        "🔄 RESET EVENT",
+        "⬅️ BACK"
+    }, nil, 
+[==[
+╔══════════════════════╗
+        	    🎫 GOLDEN PASS MENU 🎫
+╚══════════════════════╝
+]==])
+    
+    if EXP == 1 then
+        local msg = "📖 Pre-use guide\n\n"
+        msg = msg .. "Use the correct ID when swapping events.\n\n"
+        msg = msg .. "📋 Event list for update 39.0.1\n\n"
+
+        local sortedEvents = { eve_searchs["Event 54"], eve_searchs["Event 55"], eve_searchs["Event 56"] }
+
+        for _, v in ipairs(sortedEvents) do
+            msg = msg .. "• " .. v.name .. "\n"
+            msg = msg .. "ID : " .. v.id .. "\n\n"
+        end
+
+        gg.alert(msg)
+        Menu_Option(200002)
+    elseif EXP == 2 then
+        finishEventMenu()
+    elseif EXP == 3 then
+        local input = gg.prompt(
+            {
+                "What is the current event in your city (ID):",
+                "What is the event you want to switch to (ID):"
+            },
+            { "", "" },
+            { "number", "number" }
+        )
+
+        if input then
+            changeEvent(tonumber(input[1]), tonumber(input[2]))
+        else
+            Menu_Option(200002)
+        end
+    elseif EXP == 4 then
+        restartEvent()
+    elseif EXP == 5 then
+        Menu_Option(100006)
+    end
 
 elseif menu_tipo == 100006 then
 	if not USER_LOADED then
@@ -49036,9 +49123,9 @@ end
 
 function Unlock_Artifact()
     gg.alert([[
-    💡 TIPS UNLOCK artefak
-    📝Tunggu Loading ➞ Semua Artefak Terbuka
-    ]])
+💡 TIPS UNLOCK artefak
+📝Tunggu Loading ➞ Semua Artefak Terbuka
+]])
 
     gg.clearResults()
 
@@ -49254,11 +49341,11 @@ local tickets_id = {
     { name = "Western Permit", id = 810 },
     { name = "Halloween Permit", id = 820 }
 }
-local cachedResetTicketsResults = nil
+
 -- =====================================================
 -- RESET TICKETS
 -- =====================================================
-
+local cachedResetTicketsResults = nil
 
 function resetTickets()
     if cachedResetTicketsResults == nil then
@@ -49275,7 +49362,7 @@ function resetTickets()
         cachedResetTicketsResults = gg.getResults(count)
     end
 
-    local uniqueValues = {}
+    local  = {}
     local menuOptions = {}
     local valueToAddressMap = {}
 
@@ -49302,7 +49389,7 @@ function resetTickets()
         [800] = { startTime = 1789117200, endTime = 1790931600 },
         [810] = { startTime = 1790931600, endTime = 1792746000 },
         [820] = { startTime = 1792746000, endTime = 1794560400 }
-    }
+    }uniqueValues
 
     local editList = {}
     local selectedCount = 0
@@ -49604,15 +49691,15 @@ end
 -- FREEZE AND CHANGE STAGE REWARD
 --================================
 function Gold_Pass()
-    gg.clearResults()
+gg.clearResults()
 
-    local GIFT = "🗝️" -----"🗝️ ITALIAN GOLDPASS 🗝️", "🗝️ FUTURISTIC GOLDPASS 🗝️",
+local GIFT = "🗝️" -----"🗝️ ITALIAN GOLDPASS 🗝️", "🗝️ FUTURISTIC GOLDPASS 🗝️",
 
-    local function pretty(t)
-        return GIFT .. "  " .. t .. "  " .. GIFT
-    end
+local function pretty(t)
+    return GIFT .. "  " .. t .. "  " .. GIFT
+end
 
-    local menu = {
+local menu = {
     {
         label = pretty("HARVEST PASS"),
         func = Harvest_Goldpass
