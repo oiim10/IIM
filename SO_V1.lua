@@ -31,8 +31,9 @@ end
 gg.alert(
         "📢 NEW UPDATE\n" ..
         "🔄 FEATURE CHANGE PASS AND 🗺️EXPEDITION\n" ..
-	    "🏭 ACADEMY INDUSTRY\n" ..
-	    "🔍 SEKARANG KAMU BISA MENGGANTI SUPER PASS MENJADI GOLDEN TICKET DAN MENYELESAIKAN EVENT EXPEDITION HANYA SEKALI KLIK"
+	    "🏭 ACADEMY INDUSTRY > FACTORY\n" ..
+	    "🆕 SEKARANG KAMU BISA MENGGANTI SUPER PASS MENJADI GOLDEN TICKET DAN MENYELESAIKAN EVENT EXPEDITION HANYA SEKALI KLIK\n" ..
+		"👕 NEW SKIN > ELEGANT COW (ANNIVERSARY TOWNSHIP 13TH)"
 )
 local pilih = gg.alert([[
 📖 CARA MENGGUNAKAN SCRIPT
@@ -915,6 +916,7 @@ SkinData = {
 {name="HALLOWEEN TRAIN", code="r281Skins"},	
 {name="HALLOWEEN TRAIN STATION", code="r282Skins"},
 {name="HALLOWEEN CHICKEN", code="r283Skins"},	
+{name="ELEGANT COW", code="r284Skins"}	
 }
 
 function SearchSkin()
@@ -1242,6 +1244,7 @@ if selected == "r280Skins" then hack("Skins_3") end
 if selected == "r281Skins" then Skin_Dynamic_7() end
 if selected == "r282Skins" then Skin_Dynamic_8() end
 if selected == "r283Skins" then Skin_Dynamic_9() end
+if selected == "r284Skins" then hack("Skins_4") end
   hack(refs[pick])
   gg.toast("✔ Applied: " .. names[pick])
 end
@@ -6281,7 +6284,7 @@ elseif menu_tipo == 200001 then
         "🎫 UNLOCK GOLD TICKET",
         "🔄 CHANGE TICKET ",
         "🔄 RESET TICKET",
-        "👻 SHOW HIDDEN TICKET ",
+        "🔓 SHOW HIDDEN TICKET ",
         "🔎 QUERY CURRENT TICKET",
         "📝 TICKET INFORMATION",
         "🔚 BACK"
@@ -33887,6 +33890,16 @@ elseif option == "Skins_3" then -- SKIN Harbor Harvest
     add_to_4 = "6577646Ch"
     add_to_5 = "385F7473h"
     add_to_6 = "00000031h"
+    setdAhI()
+elseif option == "Skins_4" then -- SKIN Harbor Harvest
+    add_to_8 = 1
+    add_to_7 = 0
+    add_to_1 = "6968532Ah"
+    add_to_2 = "6F435F6Eh"
+    add_to_3 = "69625F77h"
+    add_to_4 = "64687472h"
+    add_to_5 = "30327961h"
+    add_to_6 = "00003632h"
     setdAhI()
 		--Decoración Valentin  
  --------------------------
