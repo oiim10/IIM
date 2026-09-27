@@ -50615,13 +50615,6 @@ function EXIT()
   os.exit()
 end
 
-function VersionInfo()
-local info = gg.getTargetInfo()
-local game = info.label or "Unknown"
-local version = info.versionName or "Unknown"
-
-return game, version
-end
 
 USER_NAME = "-"
 USER_EXPIRED = "-"
@@ -50719,24 +50712,21 @@ function Get_Account_Info()
             "👤 %s\n📅 %s\n⏳ %s\n🎮 %s", 
             USER_NAME or "-",
 			getDateTime(),
-			USER_EXPIRED,
-			""..game.." | ⚙️"..version 
+			USER_EXPIRED
         )
 elseif USER_EXPIRED == "LIFETIME" then
         info = string.format(
             "👤 %s\n📅 %s\n⏳ %s\n🎮 %s", 
             USER_NAME or "-",
 			getDateTime(),
-			USER_EXPIRED,
-			""..game.." | ⚙️"..version 
+			USER_EXPIRED
         )
     else
         info = string.format(
             "👤 %s\n📅 %s\n⏳ %s\n🎮 %s",
             USER_NAME or "-",
 			getDateTime(),
-            USER_EXPIRED.."| "..GetRemainingTime(USER_EXPIRED or ""),
-			""..game.." | ⚙️"..version
+            USER_EXPIRED.."| "..GetRemainingTime(USER_EXPIRED or "")
         )
     end
 
