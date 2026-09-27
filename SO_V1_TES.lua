@@ -50706,7 +50706,7 @@ end
 function Get_Account_Info()
 
     local info
-    local game, version = VersionInfo()
+
     if USER_EXPIRED == "UNLIMITED" then
         info = string.format(
             "👤 %s\n📅 %s\n⏳ %s\n🎮 %s", 
