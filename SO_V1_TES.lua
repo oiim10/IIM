@@ -31,8 +31,9 @@ end
 gg.alert(
         "📢 NEW UPDATE\n" ..
         "🔄 FEATURE CHANGE PASS AND 🗺️EXPEDITION\n" ..
-	    "🏭 ACADEMY INDUSTRY\n" ..
-	    "🔍 SEKARANG KAMU BISA MENGGANTI SUPER PASS MENJADI GOLDEN TICKET DAN MENYELESAIKAN EVENT EXPEDITION HANYA SEKALI KLIK"
+	    "🏭 ACADEMY INDUSTRY > FACTORY\n" ..
+	    "🆕 SEKARANG KAMU BISA MENGGANTI SUPER PASS MENJADI GOLDEN TICKET DAN MENYELESAIKAN EVENT EXPEDITION HANYA SEKALI KLIK\n" ..
+		"👕 NEW SKIN > ELEGANT COW (ANNIVERSARY TOWNSHIP 13TH)"
 )
 local pilih = gg.alert([[
 📖 CARA MENGGUNAKAN SCRIPT
@@ -915,6 +916,7 @@ SkinData = {
 {name="HALLOWEEN TRAIN", code="r281Skins"},	
 {name="HALLOWEEN TRAIN STATION", code="r282Skins"},
 {name="HALLOWEEN CHICKEN", code="r283Skins"},	
+{name="ELEGANT COW", code="r284Skins"}	
 }
 
 function SearchSkin()
@@ -1242,6 +1244,7 @@ if selected == "r280Skins" then hack("Skins_3") end
 if selected == "r281Skins" then Skin_Dynamic_7() end
 if selected == "r282Skins" then Skin_Dynamic_8() end
 if selected == "r283Skins" then Skin_Dynamic_9() end
+if selected == "r284Skins" then hack("Skins_4") end
   hack(refs[pick])
   gg.toast("✔ Applied: " .. names[pick])
 end
@@ -3415,8 +3418,8 @@ MXC = gg.choice({
     MAC = gg.choice({
 "🍀 • CLOVERS",
 "☸️ • REGATTA TOKEN",
-"⚓ • FROZEN FORTUNE TOKEN", 
-"🔴 • BLOOMING AND BUZZZING TOKEN",
+"⚓ • FROZEN FORTUNE | DRAGON NEST TOKEN ", 
+"🔴 • BLOOMING AND BUZZZING | TRAIN JOURNEY TOKEN",
 "🔙 • RETURN"
     }, nil,
 [==[
@@ -6281,7 +6284,7 @@ elseif menu_tipo == 200001 then
         "🎫 UNLOCK GOLD TICKET",
         "🔄 CHANGE TICKET ",
         "🔄 RESET TICKET",
-        "👻 SHOW HIDDEN TICKET ",
+        "🔓 SHOW HIDDEN TICKET ",
         "🔎 QUERY CURRENT TICKET",
         "📝 TICKET INFORMATION",
         "🔚 BACK"
@@ -6407,6 +6410,8 @@ elseif menu_tipo == 100006 then
         end
         )
     elseif opcao == 6 then
+        Menu_Option(20000)
+    elseif opcao == 7 then
 	gg.alert([[
 	⚠️TIPS FACTORY AND MARKET ⚠️	
 	📋CHANGE QUANTITY 
@@ -6417,13 +6422,13 @@ elseif menu_tipo == 100006 then
 	   Masukkan Harga Kotak Pabrik ➞ Keluar Masuk Pabrik agar harganya jadi 0
 	]]) 
         Menu_Option(100000)
-    elseif opcao == 7 then
-        Menu_Option(100002)
     elseif opcao == 8 then
-        Menu_Option(100001)
+        Menu_Option(100002)
     elseif opcao == 9 then
-        Menu_Option(100005)
+        Menu_Option(100001)
     elseif opcao == 10 then
+        Menu_Option(100005)
+    elseif opcao == 11 then
         Main_Menu()
     end
 
@@ -33886,6 +33891,16 @@ elseif option == "Skins_3" then -- SKIN Harbor Harvest
     add_to_5 = "385F7473h"
     add_to_6 = "00000031h"
     setdAhI()
+elseif option == "Skins_4" then -- SKIN Harbor Harvest
+    add_to_8 = 1
+    add_to_7 = 0
+    add_to_1 = "6968532Ah"
+    add_to_2 = "6F435F6Eh"
+    add_to_3 = "69625F77h"
+    add_to_4 = "64687472h"
+    add_to_5 = "30327961h"
+    add_to_6 = "00003632h"
+    setdAhI()
 		--Decoración Valentin  
  --------------------------
 	elseif option == "r1p" then
@@ -50600,6 +50615,14 @@ function EXIT()
   os.exit()
 end
 
+function VersionInfo()
+local info = gg.getTargetInfo()
+local game = info.label or "Unknown"
+local version = info.versionName or "Unknown"
+
+return game, version
+end
+
 USER_NAME = "-"
 USER_EXPIRED = "-"
 USER_CODE = "-"
@@ -50690,26 +50713,30 @@ end
 function Get_Account_Info()
 
     local info
+    local game, version = VersionInfo()
     if USER_EXPIRED == "UNLIMITED" then
         info = string.format(
             "👤 %s\n📅 %s\n⏳ %s\n🎮 %s", 
             USER_NAME or "-",
 			getDateTime(),
-			USER_EXPIRED
+			USER_EXPIRED,
+			""..game.." | ⚙️"..version 
         )
 elseif USER_EXPIRED == "LIFETIME" then
         info = string.format(
             "👤 %s\n📅 %s\n⏳ %s\n🎮 %s", 
             USER_NAME or "-",
 			getDateTime(),
-			USER_EXPIRED
+			USER_EXPIRED,
+			""..game.." | ⚙️"..version 
         )
     else
         info = string.format(
             "👤 %s\n📅 %s\n⏳ %s\n🎮 %s",
             USER_NAME or "-",
 			getDateTime(),
-            USER_EXPIRED.."| "..GetRemainingTime(USER_EXPIRED or "")
+            USER_EXPIRED.."| "..GetRemainingTime(USER_EXPIRED or ""),
+			""..game.." | ⚙️"..version
         )
     end
 
