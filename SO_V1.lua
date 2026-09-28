@@ -6299,8 +6299,8 @@ if GP == 1 then gp()end
 if GP == 2 then 
     local prompt = gg.prompt(
             {
-                "🔢 Enter the ticket ID you want to copy from:",
-                "🔢 Enter the correct ticket ID:"
+                "🔢 Masukkan ID Tiket yang ingin kamu ganti:",
+                "🔢 Masukkan ID Tiket Sekarang:"
             },
             nil,
             { "number", "number" }
@@ -49287,7 +49287,7 @@ local eve_searchs = {
 }
 
 function finishEventMenu()
-    local choice = gg.choice({ "Complete Part 1🌟", "Complete Part 2🌟", "⬅️ Back" }, nil, "Event Completion Menu")
+    local choice = gg.choice({ "Selesaikan Bagian 1🌟", "Selesaikan Bagian 2🌟", "⬅️ Back" }, nil, "Completion Event")
 
     if choice == 1 then
         performFinish(1)
