@@ -49294,7 +49294,7 @@ function finishEventMenu()
     elseif choice == 2 then
         performFinish(-1)
     elseif choice == 3 then
-        expEventMenu()
+        Menu_Option(200002)
     end
 end
 
