@@ -6390,7 +6390,7 @@ elseif menu_tipo == 100006 then
     end
 
     if opcao == 1 then
-        Gold_Pass()
+        gp()
     elseif opcao == 2 then
         CheckAccess(
         "https://raw.githubusercontent.com/oiim10/IIM/refs/heads/main/PF_GOLDENPASS",
