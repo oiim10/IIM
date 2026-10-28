@@ -49459,8 +49459,8 @@ end
 local tickets_id = {
     { name = "Harvest Ticket", id = 800 },
     { name = "Western Permit", id = 810 },
-    { name = "Halloween Permit", id = 820 }
-    { name = "Alpine Permit", id = 830 }
+    { name = "Halloween Permit", id = 820 },
+    { name = "Alpine Permit", id = 830 },
 	{ name = "Christmass Permit", id = 840 }
 }
 
