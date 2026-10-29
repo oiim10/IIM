@@ -47005,27 +47005,27 @@ function XP_Train(itemName)
 
         for g = 0,4 do
 
-            local shift = g * 76 * 4
+            local shift = g * 78 * 4
 
             local values = {
                 {
-                    address = base - (85 * 4) - shift,
+                    address = base - (87 * 4) - shift,
                     flags = gg.TYPE_DWORD,
                     value = 1
                 },
                 {
-                    address = base - (96 * 4) - shift,
+                    address = base - (98 * 4) - shift,
                     flags = gg.TYPE_DWORD,
                     value = amount
                 },
                 {
-                    address = base - (97 * 4) - shift,
+                    address = base - (99 * 4) - shift,
                     flags = gg.TYPE_DWORD,
                     value = 0
                 }
             }
 
-            local offset = 103
+            local offset = 105
             for _, v in ipairs(item) do
                 table.insert(values,{
                     address = base - (offset * 4) - shift,
