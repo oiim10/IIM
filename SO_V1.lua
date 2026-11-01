@@ -48459,7 +48459,7 @@ function Powerball_Event()
     local finalEdit = {}
 
     for _, v in ipairs(res) do
-        local addr = v.address - 20
+        local addr = v.address - 24
 
         -- Tahap 1: ubah menjadi 300
         table.insert(tempEdit, {
