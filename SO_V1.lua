@@ -51034,7 +51034,7 @@ function Main_Menu()
         "➤ | EXIT SCRIPT"
     }, nil,
     "          💻 SCRIPT BY OIIM 💻 \n"..
-    "══════════════════════\n" ..
+    "══════════════════════\n" 
     )
 
     if opcao == nil then
